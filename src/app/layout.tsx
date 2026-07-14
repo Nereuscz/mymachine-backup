@@ -25,7 +25,19 @@ const fontBody = localFont({
   fallback: ["system-ui", "-apple-system", "sans-serif"],
 });
 
+/**
+ * Základ pro absolutní URL v metadatech (OG / canonical).
+ * Priorita: vlastní NEXT_PUBLIC_SITE_URL → veřejná doména z Railway →
+ * lokální fallback. Díky tomu se resolvují sociální náhledy i po nasazení.
+ */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.RAILWAY_PUBLIC_DOMAIN
+    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "MyMachine Czechia — Dětský sen. Skutečný stroj.",
   description:
     "Děti vymyslí stroj svých snů. Studenti a firmy ho společně postaví. Nápad se mění v realitu — a děti zjistí, že dokážou cokoliv.",
