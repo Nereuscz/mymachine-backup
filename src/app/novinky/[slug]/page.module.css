@@ -1,0 +1,496 @@
+/* ==========================================================================
+   Detail článku — styly 1:1 dle Clanek.dc.html.
+   Stránka má dvě barevné varianty přepínané atributem data-v na wrapperu:
+   "B" = světlá editorial (výchozí), "A" = tmavá.
+   ========================================================================== */
+
+/* ---- Světlá varianta (B) = výchozí sada proměnných ---- */
+.page {
+  --bg: #fbfbf8;
+  --fg: #101010;
+  --muted: rgba(0, 0, 0, 0.58);
+  --soft: #f1f1ec;
+  --soft-2: #ffffff;
+  --hairline: rgba(0, 0, 0, 0.1);
+  --hairline-strong: rgba(0, 0, 0, 0.16);
+  --header-bg: rgba(251, 251, 248, 0.78);
+  --header-fg: #101010;
+  --header-line: rgba(0, 0, 0, 0.07);
+  --eyebrow: #5a8a06;
+  --accent: #cbcd15;
+  --accent-bright: #dadf3b;
+  --accent-deep: #5a8a06;
+  --glow: 0 0 22px rgba(203, 205, 21, 0.35);
+  --card-fg: #101010;
+
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  font-family: var(--font-body);
+}
+
+/* ---- Tmavá varianta (A) ---- */
+.page[data-v="A"] {
+  --bg: #121212;
+  --fg: #e7e7e4;
+  --muted: rgba(231, 231, 228, 0.62);
+  --soft: #1b1b1b;
+  --soft-2: #191919;
+  --hairline: rgba(255, 255, 255, 0.1);
+  --hairline-strong: rgba(255, 255, 255, 0.18);
+  --header-bg: rgba(18, 18, 18, 0.74);
+  --header-fg: #e7e7e4;
+  --header-line: rgba(255, 255, 255, 0.07);
+  --eyebrow: #d4d657;
+  --accent: #cbcd15;
+  --accent-bright: #dadf3b;
+  --accent-deep: #d4d657;
+  --glow: 0 0 22px rgba(203, 205, 21, 0.3);
+  --card-fg: #e7e7e4;
+}
+
+/*
+ * Hlavička je v návrhu vždy tmavá (barvy natvrdo: rgba(0,0,0,0.55), bílá,
+ * #cbcd15) bez ohledu na variantu stránky. Sdílený Header čte proměnné,
+ * proto mu je zde přebijeme na hodnoty z návrhu. display: contents —
+ * obal negeneruje box, takže position: sticky hlavičky funguje dál.
+ */
+.headerScope {
+  display: contents;
+  --header-bg: rgba(0, 0, 0, 0.55);
+  --header-fg: #ffffff;
+  --header-line: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.22);
+  --accent: #cbcd15;
+  --accent-bright: #dadf3b;
+}
+
+/* ---- Hlavička článku — vzdušná, centrovaná ---- */
+.articleHeader {
+  background: var(--bg);
+  padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 56px) clamp(28px, 3.5vw, 40px);
+  text-align: center;
+}
+
+.articleHeaderInner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.categoryPill {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--accent-deep);
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.metaDate {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(34px, 5.4vw, 66px);
+  line-height: 0.94;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.9vw, 21px);
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 26px auto 0;
+  max-width: 680px;
+  text-wrap: pretty;
+}
+
+.authorRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  margin-top: 28px;
+}
+
+.authorAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--soft);
+  border: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--fg);
+}
+
+.authorMeta {
+  text-align: left;
+}
+
+.authorName {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  line-height: 1.2;
+}
+
+.authorRole {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ---- Hero foto ---- */
+.heroSection {
+  background: var(--bg);
+  padding: 0 clamp(20px, 5vw, 56px) clamp(32px, 4.5vw, 52px);
+}
+
+.heroInner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 14px 4px 0;
+  text-align: center;
+}
+
+/* ---- Pás klíčových čísel ---- */
+.statsSection {
+  background: var(--bg);
+  padding: clamp(8px, 1.5vw, 16px) clamp(20px, 5vw, 56px) clamp(24px, 3.5vw, 38px);
+}
+
+.statsInner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.statStrip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  padding: clamp(22px, 3vw, 30px) clamp(18px, 2.5vw, 30px);
+  background: var(--soft-2);
+}
+
+.statItem {
+  padding: 4px 26px;
+  border-left: 1px solid var(--hairline);
+}
+
+.statItem:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5.4vw, 56px);
+  line-height: 0.9;
+  color: var(--fg);
+}
+
+.statLabel {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) {
+  .statStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .statItem {
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+    padding: 16px 0;
+  }
+
+  .statItem:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+/* ---- Tělo článku — úzká sazba, hodně vzduchu ---- */
+.articleBody {
+  background: var(--bg);
+  padding: clamp(8px, 1.5vw, 16px) clamp(20px, 5vw, 56px) clamp(56px, 7vw, 88px);
+}
+
+.articleBodyInner {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.paragraph {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.78;
+  color: var(--fg);
+  margin: 0 0 26px;
+  text-wrap: pretty;
+}
+
+/* Iniciála prvního odstavce */
+.dropFirst::first-letter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3.3em;
+  line-height: 0.66;
+  float: left;
+  margin: 9px 14px 0 0;
+  color: var(--fg);
+}
+
+.divider {
+  width: 44px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 46px 0 16px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  color: var(--fg);
+}
+
+/* Citace — bez rámečku, vzdušná */
+.quote {
+  margin: 48px 0;
+  text-align: center;
+}
+
+.quoteMark {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 0.6;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.4vw, 36px);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fg);
+  text-wrap: balance;
+}
+
+.quoteAuthor {
+  display: block;
+  margin-top: 18px;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent-deep);
+}
+
+/* Obrázek v textu */
+.figure {
+  margin: 36px 0;
+}
+
+/* ---- Štítky + sdílení ---- */
+.tagsRow {
+  margin-top: 44px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shareLabel {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.shareLink {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  text-decoration: none;
+  border: 1.5px solid var(--hairline-strong);
+  border-radius: 999px;
+  padding: 8px 14px;
+  transition: border-color 0.2s;
+}
+
+.shareLink:hover {
+  border-color: var(--accent);
+}
+
+/* ---- Další příběhy ---- */
+.related {
+  background: var(--soft);
+  padding: clamp(48px, 7vw, 84px) clamp(20px, 5vw, 56px);
+}
+
+.relatedInner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.relatedTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0 0 clamp(24px, 3vw, 36px);
+  color: var(--fg);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  background: var(--soft-2);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.14s ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-3px);
+}
+
+.relatedBody {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.relatedDate {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.relatedHeading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 21px;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--card-fg);
+}
+
+.relatedMore {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent-deep);
+  margin-top: 2px;
+}

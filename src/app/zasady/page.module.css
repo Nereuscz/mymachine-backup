@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Zásady & ochrana údajů — styly 1:1 dle Zasady.dc.html
+   ========================================================================== */
+
+.page {
+  /* Lokální tokeny z hlavičky návrhu, které se liší od globals.css */
+  --card: #0e0e0e;
+  --card-hover: #161616;
+
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  overflow-x: clip;
+}
+
+/* ---- HERO ---- */
+.hero {
+  position: relative;
+  background: radial-gradient(125% 120% at 70% -20%, #0a5e7d 0%, #04293a 44%, #000 82%);
+  color: #fff;
+  overflow: hidden;
+  padding: clamp(52px, 7vw, 92px) clamp(20px, 5vw, 56px) clamp(40px, 6vw, 64px);
+}
+
+.heroInner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.heroEyebrow {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: #cbcd15;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(40px, 7vw, 92px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  margin: 16px 0 0;
+}
+
+.heroLead {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 620px;
+  margin: 20px 0 0;
+}
+
+/* ---- TĚLO STRÁNKY ---- */
+.body {
+  background: var(--bg);
+  padding: clamp(44px, 6vw, 80px) clamp(20px, 5vw, 56px) clamp(56px, 8vw, 96px);
+}
+
+.bodyInner {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 4.5vw, 56px);
+}
+
+/* Upozornění na vzorové znění */
+.note {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.noteDot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  margin-top: 8px;
+}
+
+.noteText {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.noteText strong {
+  color: var(--fg);
+}
+
+/* Sekce s kotvou (#soukromi, #cookies) */
+.section {
+  scroll-margin-top: 90px;
+}
+
+.partEyebrow {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--eyebrow);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  margin: 10px 0 8px;
+}
+
+.subheading {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--fg);
+  margin: 28px 0 10px;
+}
+
+.text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Odstavec před tlačítkem „Nastavení cookies" */
+.textSpaced {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.mailLink {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Oddělovač mezi částmi */
+.divider {
+  height: 1px;
+  background: var(--hairline);
+}
+
+/* Tlačítko „Nastavení cookies" */
+.cookieBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 13px 24px;
+  background: var(--accent);
+  color: #0c0c0c;
+  border: 1.5px solid var(--accent);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cookieBtn:hover {
+  background: var(--accent-bright);
+}

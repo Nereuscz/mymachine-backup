@@ -1,0 +1,144 @@
+/* ==========================================================================
+   Zapoj se — rozcestník tří publik dle Zapoj.dc.html
+   ========================================================================== */
+
+.page {
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  overflow-x: clip;
+  /* Lokální tokeny z :root hlavičky Zapoj.dc.html lišící se od globals.css */
+  --card: #0e0e0e;
+  --card-hover: #161616;
+  --card-muted: rgba(255, 255, 255, 0.74);
+  --glow: 0 0 30px rgba(203, 205, 21, 0.4);
+}
+
+/* ---- Hero ---- */
+.hero {
+  position: relative;
+  background: radial-gradient(
+    125% 120% at 68% -20%,
+    #0a5e7d 0%,
+    #04293a 44%,
+    #000 82%
+  );
+  color: #fff;
+  overflow: hidden;
+  padding: clamp(56px, 8vw, 104px) clamp(20px, 5vw, 56px) clamp(44px, 6vw, 72px);
+  text-align: center;
+}
+
+.heroShape {
+  position: absolute;
+  right: -60px;
+  top: 10px;
+  width: 250px;
+  opacity: 0.4;
+  filter: hue-rotate(58deg) saturate(0.9) brightness(1.05)
+    drop-shadow(0 0 40px rgba(203, 205, 21, 0.4));
+  pointer-events: none;
+  animation: zapojFloat 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Lokální varianta fs-float z návrhu (posun -18px místo globálních -20px) */
+@keyframes zapojFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(-4deg);
+  }
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(44px, 8.5vw, 116px);
+  line-height: 0.9;
+  margin: 16px 0 0;
+}
+
+.heroText {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 620px;
+  margin: 22px auto 0;
+}
+
+/* ---- Závěrečný pás „Jak vaše role zapadá" ---- */
+.flowSection {
+  background: #0c0c0c;
+  border-top: 1px solid var(--hairline);
+  padding: clamp(48px, 7vw, 84px) clamp(20px, 5vw, 56px);
+}
+
+.flowHead {
+  text-align: center;
+  margin-bottom: clamp(28px, 4vw, 44px);
+}
+
+.flowTitle {
+  font-size: clamp(28px, 4.5vw, 54px);
+  line-height: 0.95;
+  margin: 12px 0 0;
+}
+
+/* Grid kroků (v návrhu .z-flow) */
+.flowGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.flowCard {
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.flowStep {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--eyebrow);
+}
+
+/* Nadpis kroku — v návrhu bez letter-spacingu, proto ne globální .display */
+.flowCardTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  line-height: 1;
+  margin: 10px 0 8px;
+  color: var(--fg);
+}
+
+.flowCardText {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Responzivní pravidlo ze <style> bloku návrhu */
+@media (max-width: 860px) {
+  .flowGrid {
+    grid-template-columns: 1fr;
+  }
+}

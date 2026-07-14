@@ -1,0 +1,140 @@
+/* Filtr kategorií + mřížka článků — styly 1:1 z Novinky.dc.html */
+
+/* ---- Filtr ---- */
+
+.filterSection {
+  background: var(--bg);
+  padding: 0 clamp(20px, 5vw, 56px) clamp(12px, 2vw, 20px);
+}
+
+.filterRow {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Chip filtru — neaktivní stav */
+.chip {
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 11px 20px;
+  border-radius: 999px;
+  transition: all 0.18s;
+  border: 1.5px solid var(--hairline-strong);
+  background: transparent;
+  color: var(--fg);
+}
+
+/* Chip filtru — aktivní stav */
+.chipActive {
+  border: 1.5px solid var(--accent);
+  background: var(--accent);
+  color: #0c0c0c;
+}
+
+/* ---- Mřížka ---- */
+
+.gridSection {
+  background: var(--bg);
+  padding: clamp(20px, 3vw, 32px) clamp(20px, 5vw, 56px) clamp(64px, 9vw, 110px);
+}
+
+.grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Karta článku */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.14s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.media {
+  position: relative;
+}
+
+/* Štítek kategorie na fotce */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #0c0c0c;
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+.body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+
+.date {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 26px;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--card-fg);
+}
+
+.excerpt {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--card-muted);
+  margin: 0;
+  flex: 1;
+}
+
+.readLink {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--accent-deep);
+  text-decoration: none;
+  margin-top: 4px;
+}

@@ -1,0 +1,90 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  background: rgba(10, 10, 10, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px clamp(20px, 5vw, 56px);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.42s;
+}
+
+.barVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.text {
+  font-family: var(--font-body, system-ui);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+  flex: 1;
+  min-width: 260px;
+  max-width: 720px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.decline,
+.accept {
+  appearance: none;
+  cursor: pointer;
+  font-family: var(--font-wide, system-ui);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 12px 22px;
+}
+
+.decline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.decline:hover {
+  border-color: #cbcd15;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.accept {
+  background: #cbcd15;
+  color: #0c0c0c;
+  border: 1.5px solid #cbcd15;
+  transition: background 0.2s;
+}
+
+.accept:hover {
+  background: #dadf3b;
+}

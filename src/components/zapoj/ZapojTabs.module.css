@@ -1,0 +1,313 @@
+/* ==========================================================================
+   Zapoj se — přepínač tří cest (sticky lišta) a panely dle Zapoj.dc.html
+   ========================================================================== */
+
+/* ---- Sticky lišta se záložkami ---- */
+.tabBar {
+  position: sticky;
+  top: 69px;
+  /* V návrhu z-index 55 pod headerem (60); zdejší Header má 50, proto 45,
+     aby lišta zůstala pod headerem a nad obsahem. */
+  z-index: 45;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.tabBarInner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  overflow-x: auto;
+}
+
+/* Záložka — základ (tabBase ze skriptu návrhu) */
+.tab {
+  appearance: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  white-space: nowrap;
+  flex: 1 1 0;
+  min-width: 150px;
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+/* Aktivní záložka */
+.tabActive {
+  background: #cbcd15;
+  border-color: #cbcd15;
+  color: #0c0c0c;
+}
+
+.tabNum {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.tabLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Sekce panelu ---- */
+.sectionIntro {
+  background: var(--bg);
+  padding: clamp(52px, 7vw, 88px) clamp(20px, 5vw, 56px) clamp(32px, 4vw, 48px);
+}
+
+.sectionCards {
+  background: var(--bg);
+  padding: 0 clamp(20px, 5vw, 56px) clamp(28px, 4vw, 44px);
+}
+
+.sectionFaq {
+  background: var(--bg);
+  padding: clamp(8px, 2vw, 20px) clamp(20px, 5vw, 56px) clamp(40px, 5vw, 60px);
+}
+
+/* ---- Dvousloupcové gridy (v návrhu .z-split) ---- */
+.splitIntro {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+/* Varianta s obrázkem vlevo (panel Vysokoškolák) */
+.splitIntroRev {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.splitFaq {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+/* ---- Úvodní blok panelu ---- */
+.introTitle {
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 0.94;
+  margin: 14px 0 18px;
+}
+
+.introP {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.introP:last-child {
+  margin: 0;
+}
+
+.introP strong {
+  color: var(--fg);
+}
+
+/* ---- Karty „Co děláte / Kolik to zabere / …" (v návrhu .z-cards) ---- */
+.cards {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  padding: 26px;
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #0c0c0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow);
+}
+
+.cardTitle {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--eyebrow);
+  margin: 6px 0 0;
+}
+
+.cardText {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--card-muted);
+  margin: 0;
+}
+
+/* ---- Časté otázky ---- */
+.faqBox {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+/* Štítek boxu (Časté otázky / Termín / Nábor / Ročník …) */
+.kicker {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--eyebrow);
+}
+
+.faqList {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 16px;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.faqQ {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--card-fg);
+  margin: 0 0 6px;
+}
+
+.faqA {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--card-muted);
+  margin: 0;
+}
+
+/* ---- Pravý sloupec: upoutávka + CTA ---- */
+.ctaCol {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.noticeBox {
+  background: linear-gradient(180deg, #141406, #0c0c0c);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 20px;
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.noticeTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 10px 0 8px;
+}
+
+.noticeText {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 999px;
+  padding: 18px 32px;
+  background: var(--accent);
+  color: #0c0c0c;
+  border: 1.5px solid var(--accent);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.ctaBtn:hover {
+  background: var(--accent-bright);
+}
+
+/* ---- Responzivní pravidla ze <style> bloku návrhu ---- */
+@media (max-width: 860px) {
+  .splitIntro,
+  .splitIntroRev,
+  .splitFaq {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

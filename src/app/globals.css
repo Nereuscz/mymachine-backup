@@ -1,49 +1,267 @@
+/* ==========================================================================
+   MyMachine Czechia — globální styly
+   Design tokeny převzaté 1:1 z Future Shapers design systému (_ds/tokens)
+   a z lokálního :root návrhu (MyMachine.dc.html).
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Future Shapers — barvy ---- */
+  --fs-black: #000000;
+  --fs-white: #ffffff;
+  --fs-orange: #fe8900;
+  --fs-orange-bright: #ffa42e;
+  --fs-blue-light: #05769a;
+  --fs-blue-dark: #003c56;
+  --fs-gray-900: #0a0a0a;
+  --fs-gray-850: #121212;
+  --fs-gray-800: #1a1a1a;
+  --fs-gray-700: #262626;
+  --fs-gray-600: #3a3a3a;
+  --fs-gray-500: #6b6b6b;
+  --fs-gray-400: #9a9a9a;
+  --fs-gray-300: #c7c7c7;
+  --fs-gray-200: #e6e6e6;
+  --fs-gray-100: #f4f4f4;
+  --fs-white-08: rgba(255, 255, 255, 0.08);
+  --fs-white-12: rgba(255, 255, 255, 0.12);
+  --fs-white-20: rgba(255, 255, 255, 0.20);
+  --fs-white-60: rgba(255, 255, 255, 0.60);
+  --fs-black-40: rgba(0, 0, 0, 0.40);
+  --fs-black-60: rgba(0, 0, 0, 0.60);
+
+  /* ---- Typografie — škála ---- */
+  --text-display-1: 8rem;
+  --text-display-2: 5.5rem;
+  --text-display-3: 3.75rem;
+  --text-h1: 2.75rem;
+  --text-h2: 2rem;
+  --text-h3: 1.5rem;
+  --text-lead: 1.125rem;
+  --text-eyebrow: 0.8125rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+  --weight-display: 700;
+  --weight-body: 500;
+  --leading-display: 0.92;
+  --leading-tight: 1.05;
+  --leading-snug: 1.25;
+  --leading-body: 1.55;
+  --tracking-display: -0.01em;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.18em;
+  --tracking-body: 0;
+
+  /* ---- Rozestupy, rádiusy, layout, pohyb ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --container-max: 1240px;
+  --container-pad: clamp(20px, 5vw, 56px);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+
+  /* ---- MyMachine — lokální tokeny stránek (tmavý web) ---- */
+  --bg: #000000;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.78);
+  --card: #121212;
+  --card-hover: #1a1a1a;
+  --card-fg: #ffffff;
+  --card-muted: rgba(255, 255, 255, 0.78);
+  --hairline: rgba(255, 255, 255, 0.12);
+  --hairline-strong: rgba(255, 255, 255, 0.22);
+  --header-bg: rgba(0, 0, 0, 0.55);
+  --header-fg: #ffffff;
+  --header-line: rgba(255, 255, 255, 0.08);
+  --hero-bg: radial-gradient(125% 115% at 64% -12%, #0a5e7d 0%, #04293a 42%, #000 80%);
+  --hero-fg: #ffffff;
+  --hero-muted: rgba(255, 255, 255, 0.82);
+  --hero-ink: #04293a;
+  --band-bg: #0c0c0c;
+  --band-fg: #ffffff;
+  --band-muted: rgba(255, 255, 255, 0.72);
+  --band-num: #cbcd15;
+  --band-hairline: rgba(255, 255, 255, 0.12);
+  --tile: #101010;
+  --tile-fg: rgba(255, 255, 255, 0.86);
+  --tile-hairline: rgba(255, 255, 255, 0.12);
+  --eyebrow: #cbcd15;
+  --accent: #cbcd15;
+  --accent-bright: #dadf3b;
+  --accent-deep: #cbcd15;
+  --glow: 0 0 36px rgba(203, 205, 21, 0.45);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
+/* ---- Base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: var(--weight-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 10px;
+}
+
+*::selection {
+  background: #cbcd15;
+  color: #0a0a0a;
+}
+
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #cbcd15;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes fs-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(-4deg); }
+}
+
+@keyframes fs-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+/* ==========================================================================
+   Sdílené vzory návrhu (opakující se styly z .dc.html předloh)
+   ========================================================================== */
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+/* Eyebrow — Obviously Wide, verzálky, tracking 0.18em, akcent */
+.eyebrow {
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--eyebrow);
+}
+
+/* Display nadpisy — Obviously Condensed, verzálky */
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fg);
+}
+
+/* Pill tlačítka */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-wide);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: #0c0c0c;
+  border: 1.5px solid var(--accent);
+  transition: background 0.2s;
+}
+
+.btn-accent:hover {
+  background: var(--accent-bright);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--fg);
+  border: 1.5px solid var(--hairline-strong);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--card-hover);
+}
+
+/* Kruhová tlačítka šipek carouselu */
+.arrow-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid var(--hairline-strong);
+  background: transparent;
+  color: var(--fg);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.arrow-btn:hover {
+  background: var(--card-hover);
 }
