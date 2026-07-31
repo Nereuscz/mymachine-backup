@@ -100,6 +100,11 @@ export default async function ClanekPage({ params }: PageProps) {
     notFound();
   }
 
+  const siteUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.mymachineczechia.cz"
+  ).replace(/\/$/, "");
+  const articleUrl = encodeURIComponent(`${siteUrl}/novinky/${article.slug}`);
+
   return (
     <ClanekShell className={styles.page}>
       {/* Hlavička je v návrhu vždy tmavá — scope přebíjí variantní proměnné */}
@@ -172,10 +177,20 @@ export default async function ClanekPage({ params }: PageProps) {
             </div>
             <div className={styles.share}>
               <span className={styles.shareLabel}>Sdílet</span>
-              <a href="#" className={styles.shareLink}>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${articleUrl}`}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.shareLink}
+              >
                 Facebook
               </a>
-              <a href="#" className={styles.shareLink}>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${articleUrl}`}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.shareLink}
+              >
                 LinkedIn
               </a>
             </div>
@@ -188,16 +203,41 @@ export default async function ClanekPage({ params }: PageProps) {
         <div className={styles.relatedInner}>
           <h2 className={styles.relatedTitle}>Další příběhy</h2>
           <div className={styles.relatedGrid}>
-            {article.related.map((post) => (
-              <Link key={post.title} href={post.href} className={styles.relatedCard}>
-                <ImageSlot src={post.image} alt={post.title} height={160} />
-                <div className={styles.relatedBody}>
-                  <span className={styles.relatedDate}>{post.date}</span>
-                  <h3 className={styles.relatedHeading}>{post.title}</h3>
-                  <span className={styles.relatedMore}>Číst článek</span>
-                </div>
-              </Link>
-            ))}
+            {article.related.map((post) => {
+              const cardContent = (
+                <>
+                  <ImageSlot src={post.image} alt={post.title} height={160} />
+                  <div className={styles.relatedBody}>
+                    <span className={styles.relatedDate}>{post.date}</span>
+                    <h3 className={styles.relatedHeading}>{post.title}</h3>
+                    <span className={styles.relatedMore}>
+                      {post.href ? "Číst článek" : "Článek připravujeme"}
+                    </span>
+                  </div>
+                </>
+              );
+
+              if (!post.href) {
+                return (
+                  <article
+                    key={post.title}
+                    className={`${styles.relatedCard} ${styles.relatedCardStatic}`}
+                  >
+                    {cardContent}
+                  </article>
+                );
+              }
+
+              return (
+                <Link
+                  key={post.title}
+                  href={post.href}
+                  className={`${styles.relatedCard} ${styles.relatedCardInteractive}`}
+                >
+                  {cardContent}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
@@ -29,6 +29,17 @@ export default function Header({
 }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   const overlayLinks =
     variant === "home"
@@ -95,6 +106,8 @@ export default function Header({
             type="button"
             onClick={() => setMenuOpen(true)}
             className={styles.menuBtn}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             Menu
             <span className={styles.menuIcon}>
@@ -106,42 +119,43 @@ export default function Header({
       </header>
 
       {/* Fullscreen menu overlay */}
-      <div
-        className={styles.overlay}
-        style={{
-          opacity: menuOpen ? 1 : 0,
-          pointerEvents: menuOpen ? "auto" : "none",
-        }}
-        aria-hidden={!menuOpen}
-      >
-        <div className={styles.overlayTop}>
-          <span style={{ display: "inline-flex", alignItems: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/brand/mymachine-czechia-white.png"
-              alt="MyMachine Czechia"
-              style={{ height: 38, width: "auto", display: "block" }}
-            />
-          </span>
-          <button type="button" onClick={closeMenu} className={styles.closeBtn}>
-            Zavřít ✕
-          </button>
+      {menuOpen && (
+        <div
+          id="mobile-menu"
+          className={styles.overlay}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Hlavní menu"
+        >
+          <div className={styles.overlayTop}>
+            <span style={{ display: "inline-flex", alignItems: "center" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/brand/mymachine-czechia-white.png"
+                alt="MyMachine Czechia"
+                style={{ height: 38, width: "auto", display: "block" }}
+              />
+            </span>
+            <button type="button" onClick={closeMenu} className={styles.closeBtn}>
+              Zavřít ✕
+            </button>
+          </div>
+          <nav className={styles.overlayNav}>
+            {overlayLinks.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={closeMenu}
+                className={styles.overlayLink}
+                style={item.key === active ? { color: "#cbcd15" } : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <span className={styles.overlayTag}>#otevřisemožnoSTEM</span>
         </div>
-        <nav className={styles.overlayNav}>
-          {overlayLinks.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={closeMenu}
-              className={styles.overlayLink}
-              style={item.key === active ? { color: "#cbcd15" } : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <span className={styles.overlayTag}>#otevřisemožnoSTEM</span>
-      </div>
+      )}
     </>
   );
 }

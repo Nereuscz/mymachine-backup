@@ -40,15 +40,15 @@ export default function Footer({ bottomPad = 56 }: FooterProps) {
         <div>
           <span className={styles.colTitle}>Odkazy</span>
           <div className={styles.links}>
-            <a href="/#jak" className={styles.link}>
+            <Link href="/#jak" className={styles.link}>
               Jak to funguje
-            </a>
-            <a href="/#program" className={styles.link}>
+            </Link>
+            <Link href="/#program" className={styles.link}>
               O programu
-            </a>
-            <a href="/#partneri" className={styles.link}>
+            </Link>
+            <Link href="/#partneri" className={styles.link}>
               Partneři
-            </a>
+            </Link>
             <Link href="/novinky" className={styles.link}>
               Novinky
             </Link>

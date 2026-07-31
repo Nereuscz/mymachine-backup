@@ -86,13 +86,13 @@ export default function VynalezyPage() {
           dětský sen ve skutečný stroj.
         </p>
         <div className={styles.ctaButtons}>
-          <Link href="/zapoj-se#skola" className={styles.ctaBtn}>
+          <Link href="/zapoj-se#formular-skola" className={styles.ctaBtn}>
             Přihlásit školu
           </Link>
-          <Link href="/zapoj-se#student" className={styles.ctaBtn}>
+          <Link href="/zapoj-se#formular-student" className={styles.ctaBtn}>
             Zapojit se jako vysokoškolák
           </Link>
-          <Link href="/zapoj-se#firma" className={styles.ctaBtn}>
+          <Link href="/zapoj-se#formular-firma" className={styles.ctaBtn}>
             Stát se patronem
           </Link>
         </div>

@@ -134,9 +134,8 @@ export default function Home() {
                 Startujeme v září — přihlaš se už teď přes léto
               </p>
               <p className={styles.bannerText}>
-                [Placeholder — doplňte termín uzávěrky přihlášek.] Přes
-                prázdniny sbíráme přihlášky škol, studentů i firem a naostro
-                začínáme v září.
+                Přes prázdniny sbíráme přihlášky škol, studentů i firem a
+                naostro začínáme v září.
               </p>
             </div>
           </div>
@@ -484,20 +483,40 @@ export default function Home() {
                   která propojuje lidi z vědy a techniky a mění pohled mladých
                   lidí na svět STEM.
                 </p>
-                <a href="#" className={styles.fsCardLink}>
+                <a
+                  href="https://futureshapers.cz/pro-partnery/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.fsCardLink}
+                >
                   Více o Future Shapers
                 </a>
               </div>
               <div className={styles.socialCard}>
                 <span className={styles.socialTitle}>Sledujte nás</span>
                 <div className={styles.socialLinks}>
-                  <a href="#" className={styles.socialLink}>
+                  <a
+                    href="https://www.instagram.com/wearefutureshapers/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.socialLink}
+                  >
                     Instagram
                   </a>
-                  <a href="#" className={styles.socialLink}>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61580140355797"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.socialLink}
+                  >
                     Facebook
                   </a>
-                  <a href="#" className={styles.socialLink}>
+                  <a
+                    href="https://cz.linkedin.com/showcase/wearefutureshapers/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.socialLink}
+                  >
                     LinkedIn
                   </a>
                 </div>

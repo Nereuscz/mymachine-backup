@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
+import JoinForm from "./JoinForm";
 import styles from "./ZapojTabs.module.css";
 
 type TabKey = "skola" | "student" | "firma";
@@ -34,7 +34,6 @@ type Panel = {
   cards: PanelCard[];
   faqs: PanelFaq[];
   notice: { label: string; title: string; text: string };
-  ctaLabel: string;
 };
 
 /* Obsah tří panelů přenesený 1:1 ze Zapoj.dc.html */
@@ -103,7 +102,6 @@ const PANELS: Panel[] = [
       title: "Přihlášky pro ročník 2026/2027 jsou otevřené",
       text: "Hledáme základní i střední školy z kraje. Kapacita je omezená — ozvěte se včas.",
     },
-    ctaLabel: "Přihlásit školu",
   },
   {
     key: "student",
@@ -168,7 +166,6 @@ const PANELS: Panel[] = [
       title: "Hledáme studenty do týmů pro ročník 2026/2027",
       text: "Osm dětských vynálezů čeká na svůj tým. Přidej se, dokud jsou místa.",
     },
-    ctaLabel: "Přihlásit se do týmu",
   },
   {
     key: "firma",
@@ -233,23 +230,41 @@ const PANELS: Panel[] = [
       title: "Vyberte si vynález, který postavíte",
       text: "Nové dětské nápady hledají patrony. Čím dřív se ozvete, tím víc si vyberete.",
     },
-    ctaLabel: "Stát se patronem",
   },
 ];
 
 /**
  * Sticky přepínač „Učitel / škola · Vysokoškolák · Firma" a tři panely.
  * Stav odpovídá skriptu v Zapoj.dc.html: výchozí záložka „skola",
- * kotva v URL (#skola/#student/#firma) přepne záložku po načtení.
+ * Kotvy rolí přepínají záložku a kotvy #formular-* navíc posunou uživatele
+ * přímo k odpovídajícímu formuláři.
  */
 export default function ZapojTabs() {
   const [tab, setTab] = useState<TabKey>("skola");
 
   useEffect(() => {
+    let scrollFrame = 0;
+
     const syncTabWithHash = () => {
       const hash = (window.location.hash || "").replace("#", "");
-      if (hash === "skola" || hash === "student" || hash === "firma") {
-        setTab(hash);
+      const nextTab = hash.startsWith("formular-")
+        ? hash.replace("formular-", "")
+        : hash;
+
+      if (nextTab === "skola" || nextTab === "student" || nextTab === "firma") {
+        setTab(nextTab);
+
+        if (hash === `formular-${nextTab}`) {
+          window.cancelAnimationFrame(scrollFrame);
+          scrollFrame = window.requestAnimationFrame(() => {
+            scrollFrame = window.requestAnimationFrame(() => {
+              document.getElementById(hash)?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            });
+          });
+        }
       }
     };
 
@@ -258,6 +273,7 @@ export default function ZapojTabs() {
 
     return () => {
       window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(scrollFrame);
       window.removeEventListener("hashchange", syncTabWithHash);
     };
   }, []);
@@ -378,7 +394,7 @@ export default function ZapojTabs() {
             </div>
           </section>
 
-          {/* Časté otázky + upoutávka s CTA */}
+          {/* Časté otázky + upoutávka + formulář pro vybranou roli */}
           <section className={styles.sectionFaq}>
             <div className={styles.splitFaq}>
               <div className={styles.faqBox}>
@@ -398,11 +414,9 @@ export default function ZapojTabs() {
                   <p className={styles.noticeTitle}>{panel.notice.title}</p>
                   <p className={styles.noticeText}>{panel.notice.text}</p>
                 </div>
-                <Link href="/#kontakt" className={styles.ctaBtn}>
-                  {panel.ctaLabel}
-                </Link>
               </div>
             </div>
+            <JoinForm role={panel.key} />
           </section>
         </div>
       ))}

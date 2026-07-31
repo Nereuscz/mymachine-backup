@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./CookieConsent.module.css";
 
 const KEY = "mm-cookie-consent";
@@ -33,10 +34,15 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    let openFrame: number | undefined;
+    let visibleFrame: number | undefined;
+
     if (!readConsent()) {
-      setOpen(true);
-      // Vstupní animace až po prvním vykreslení (translateY 120% → 0).
-      requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)));
+      openFrame = requestAnimationFrame(() => {
+        setOpen(true);
+        // Vstupní animace až po vykreslení lišty (translateY 120% → 0).
+        visibleFrame = requestAnimationFrame(() => setVisible(true));
+      });
     }
 
     const onClick = (e: MouseEvent) => {
@@ -50,7 +56,11 @@ export default function CookieConsent() {
       }
     };
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    return () => {
+      document.removeEventListener("click", onClick);
+      if (openFrame) cancelAnimationFrame(openFrame);
+      if (visibleFrame) cancelAnimationFrame(visibleFrame);
+    };
   }, []);
 
   const close = useCallback((value: Consent) => {
@@ -67,9 +77,9 @@ export default function CookieConsent() {
         <p className={styles.text}>
           Používáme cookies nezbytné pro fungování webu a — s vaším souhlasem —
           také analytické cookies, které nám pomáhají web zlepšovat. Více v{" "}
-          <a href="/zasady#cookies" className={styles.link}>
+          <Link href="/zasady#cookies" className={styles.link}>
             zásadách používání cookies
-          </a>
+          </Link>
           .
         </p>
         <div className={styles.actions}>

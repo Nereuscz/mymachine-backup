@@ -37,7 +37,7 @@ export type RelatedPost = {
   date: string;
   title: string;
   image: string;
-  href: string;
+  href: string | null;
 };
 
 export type Article = {
@@ -73,7 +73,7 @@ export type Article = {
 export const articles: Article[] = [
   {
     slug: ARTICLE_SLUG,
-    category: "Novinky",
+    category: "Akce",
     date: "15. června 2026",
     dateISO: "2026-06-15",
     readingTime: "4 min čtení",
@@ -148,26 +148,25 @@ export const articles: Article[] = [
       },
     ],
     tags: ["#otevřisemožnoSTEM", "EXPO", "Pilotní ročník"],
-    // Karty „Další příběhy“ — odkazy jsou v návrhu zatím prázdné (href="#"),
-    // po publikaci dalších článků stačí doplnit skutečné slugy.
+    // Karty „Další příběhy“ zůstanou neklikací, dokud nevzniknou jejich detaily.
     related: [
       {
         date: "29. května 2026",
         title: "Rok práce, stovky studentů a osm vynálezů",
         image: "/assets/photos/news2.jpg",
-        href: "#",
+        href: null,
       },
       {
         date: "15. května 2026",
         title: "Co kdyby vás v létě následoval vlastní větrák?",
         image: "/assets/photos/news3.jpg",
-        href: "#",
+        href: null,
       },
       {
         date: "9. dubna 2026",
         title: "Otevíráme přihlašování pro rok 2026/2027!",
         image: "/assets/photos/sketch.jpg",
-        href: "#",
+        href: null,
       },
     ],
   },

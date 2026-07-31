@@ -270,7 +270,7 @@
   margin: 0;
 }
 
-/* ---- Pravý sloupec: upoutávka + CTA ---- */
+/* ---- Pravý sloupec: termín nebo nábor ---- */
 .ctaCol {
   display: flex;
   flex-direction: column;
@@ -301,30 +301,6 @@
   line-height: 1.55;
   color: var(--muted);
   margin: 0;
-}
-
-.ctaBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  font-family: var(--font-wide);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 15px;
-  line-height: 1;
-  border-radius: 999px;
-  padding: 18px 32px;
-  background: var(--accent);
-  color: #0c0c0c;
-  border: 1.5px solid var(--accent);
-  text-decoration: none;
-  transition: background 0.2s;
-}
-
-.ctaBtn:hover {
-  background: var(--accent-bright);
 }
 
 /* ---- Responzivní pravidla ze <style> bloku návrhu ---- */

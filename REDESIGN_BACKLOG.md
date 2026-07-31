@@ -48,12 +48,22 @@ Priority jsou pracovní návrh a je potřeba je potvrdit před plánováním rea
 | ZS-01 | Stránka „Chci se zapojit“ má místo plné globální navigace jednoduchou hlavičku s logem a jednoznačným návratem na homepage. |
 | ZS-04 | Výběr školy, vysokoškoláka a firmy má výraznější aktivní stav, doprovodné instrukce a přístupnou strukturu záložek. |
 | ZS-05 | Společné vysvětlení návaznosti všech rolí je přesunuté nad výběr konkrétní cesty. |
+| ZS-06 | Obecná CTA na kontakt byla nahrazená formulářem přímo v každé ze tří záložek. Školní formulář je součástí panelu školy a stejný princip používají student i firma. |
 | ZS-07 | Stránka „Chci se zapojit“ obsahuje social proof pilotního ročníku 2025/2026: počty škol, dětí, středoškoláků, vysokoškoláků, firemních patronů a hotových vynálezů. |
 | VY-01 | Stránka Vynálezy obsahuje infografiku pilotního ročníku s počty zapojených dětí, středoškoláků, vysokoškoláků a dokončených vynálezů. |
 | VY-03 | Každý vynález má dvě miniatury vedle sebe. Fotografie lze zvětšit do popupu, přepínat šipkami a zavřít tlačítkem, kliknutím mimo obsah nebo klávesou `Esc`. |
-| BL-02 | Celá karta článku je klikací, má viditelný hover i focus stav a jasně reaguje posunem šipky a fotografie. |
+| VY-04 | Tři CTA na stránce Vynálezy otevírají správnou záložku školy, vysokoškoláka nebo firmy a posunou návštěvníka přímo k příslušnému formuláři. |
+| BL-01 | Blog má pět stálých rubrik — Vynálezy, Ze škol, Akce, Zapojte se a O programu. Existující články jsou přeřazené a výpis umožňuje rubriky filtrovat včetně počtu výsledků. |
+| BL-02 | Publikovaný článek má klikací celou kartu s viditelným hover a focus stavem. Karty bez existujícího detailu jsou neklikací a označené „Článek připravujeme“, takže už nevedou na prázdné `#`. |
 | BL-03 | Detail článku používá jednotnou tmavou variantu bez přepínače vzhledu. |
 | BL-04 | Strukturovaný obsah článku podporuje výraznější citační blok a opakovaně použitelný CTA blok s odkazem. |
+
+### Rozpracováno — čeká na produkční konfiguraci
+
+| ID | Aktuální stav | Co zbývá |
+|---|---|---|
+| HP-11 | Kontaktní formulář má požadovaná pole, klientskou i serverovou validaci, stavy odesílání, honeypot, omezení počtu požadavků a API napojené na Resend. | Na hostingu nastavit `RESEND_API_KEY` a `RESEND_FROM_EMAIL` pro ověřenou doménu a poté provést jeden skutečný test doručení na `franekova@btym.cz`. |
+| ZS-02 | Škola, vysokoškolák a firma mají vlastní pracovní sadu polí, povinné souhlasy, validaci jednotlivých polí i skupin voleb, přístupné chybové hlášky a transparentní stav po úspěšné kontrole. | Schválit finální pole a texty, zvolit cílové příjemce/evidenci leadů a napojit skutečné odesílání. Do té doby se data z formulářů nikam neodesílají. |
 
 ### Doplňkové opravy
 
@@ -61,12 +71,15 @@ Priority jsou pracovní návrh a je potřeba je potvrdit před plánováním rea
 - Mobilní hero sekce používá jednosloupcové rozložení a malé displeje skrývají duplicitní CTA v hlavičce.
 - Kotvy používají plynulé posouvání podporované aktuální verzí Next.js.
 - Přibyly závislosti `leaflet` a `@types/leaflet` pro mapovou komponentu.
+- Blog se na tabletu skládá do dvou a na mobilu do jednoho sloupce.
+- Karty blogu mají na desktopu a tabletu sjednocené výšky bloků nadpisu a perexu; spodní akce jsou zarovnané v jedné linii. Na mobilu se celý text zobrazuje bez umělých mezer.
+- Pracovní placeholdery a prázdné sociální odkazy byly odstraněné; odkazy míří na ověřené profily Future Shapers.
+- Zavřené mobilní menu se nevykresluje, takže jeho odkazy nejsou dostupné klávesnicí mimo otevřený stav.
 
 ### Ověření a známý technický dluh
 
-- Produkční sestavení a kontrola všech změněných TypeScript/TSX souborů procházejí bez chyb.
+- Produkční sestavení a celoprojektový lint procházejí bez chyb.
 - Vizuálně ověřeno na desktopu i mobilu; všech sedm mapových lokalit zůstává v záběru.
-- Celoprojektový lint nadále hlásí šest dřívějších chyb v `CookieConsent.tsx`, `Footer.tsx` a `ZapojTabs.tsx`. Tyto soubory nejsou součástí této iterace a chyby jsou ponechané k samostatné opravě.
 - HP-03 je hotové v aktuálně odsouhlaseném rozsahu měst. Pro budoucí zobrazení jednotlivých škol zůstává otevřený datový podklad DEP-03.
 
 ## 1. Homepage
