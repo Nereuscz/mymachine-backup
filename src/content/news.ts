@@ -9,6 +9,8 @@ export const ARTICLE_SLUG = "oslavovali-jsme-prvni-rocnik";
 
 export type NewsCard = {
   badge: string;
+  date: string;
+  dateISO: string;
   title: string;
   excerpt: string;
   image: string;
@@ -173,10 +175,12 @@ export const allPosts: NewsPost[] = postRows.map(
   })
 );
 
-/** Čtyři karty v carouselu novinek na domovské stránce (dle návrhu). */
+/** Tři nejnovější články na domovské stránce. */
 export const homeNews: NewsCard[] = [
   {
     badge: "Novinka",
+    date: "15. června 2026",
+    dateISO: "2026-06-15",
     title: "Oslavili jsme první ročník MyMachine Czechia",
     excerpt:
       "Ve VIDA! science centru se dětské kresby proměnily ve skutečnost. MyMachine EXPO představilo osm hotových prototypů a uzavřelo první ročník.",
@@ -184,7 +188,9 @@ export const homeNews: NewsCard[] = [
     href: `/novinky/${ARTICLE_SLUG}`,
   },
   {
-    badge: "Pozvánka · 13. 6. 2026",
+    badge: "Pozvánka",
+    date: "29. května 2026",
+    dateISO: "2026-05-29",
     title: "Rok práce, stovky studentů a osm dětských vynálezů",
     excerpt:
       "První ročník vrcholí. Přijďte se podívat na prototypy, které vznikly díky spolupráci škol, univerzity VUT a firem z celého Jihomoravského kraje.",
@@ -193,18 +199,12 @@ export const homeNews: NewsCard[] = [
   },
   {
     badge: "Nábor",
+    date: "20. května 2026",
+    dateISO: "2026-05-20",
     title: "Hledáme vysokoškoláky do projektu MyMachine",
     excerpt:
       "Nezáleží na oboru, záleží na nadšení. Hledáme studenty, kteří chtějí proměnit dětské nápady v realitu — a získat zkušenost z reálného projektu.",
     image: "/assets/photos/news3.jpg",
     href: "/#kontakt",
-  },
-  {
-    badge: "Partneři",
-    title: "Nové firmy se přidávají jako patroni vynálezů",
-    excerpt:
-      "Děkujeme firmám, které berou dětské vynálezy za své. Bez patronů by se sny neproměnily ve stroje.",
-    image: "/assets/photos/news4.jpg",
-    href: "/#partneri",
   },
 ];

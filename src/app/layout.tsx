@@ -51,6 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="cs"
+      data-scroll-behavior="smooth"
       className={`${fontDisplay.variable} ${fontWide.variable} ${fontBody.variable}`}
     >
       <body>

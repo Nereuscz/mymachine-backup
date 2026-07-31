@@ -1,8 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ImageSlot from "@/components/ImageSlot";
+import Link from "next/link";
 import InventionsSection from "@/components/home/InventionsSection";
 import NewsSection from "@/components/home/NewsSection";
+import SchoolsMap from "@/components/home/SchoolsMap";
 import ContactForm from "@/components/home/ContactForm";
 import { featuredInventions } from "@/content/inventions";
 import { homeNews } from "@/content/news";
@@ -36,19 +38,34 @@ const phases = [
   },
 ];
 
-const mapCities: {
-  label: string;
-  left: string;
-  top: string;
-  size: number;
-  labelSide: "top" | "left";
-}[] = [
-  { label: "Brno a okolí", left: "55.9%", top: "43.3%", size: 20, labelSide: "top" },
-  { label: "Znojmo", left: "24.9%", top: "75.7%", size: 14, labelSide: "top" },
-  { label: "Višňové", left: "33.4%", top: "60.9%", size: 14, labelSide: "top" },
-  { label: "Hustopeče", left: "62.1%", top: "67.6%", size: 14, labelSide: "top" },
-  { label: "Kyjov · Milotice", left: "84.0%", top: "61.0%", size: 14, labelSide: "left" },
-  { label: "Hodonín", left: "85.1%", top: "76.3%", size: 14, labelSide: "left" },
+const audiences = [
+  {
+    number: "01",
+    label: "Základní a střední školy",
+    title: "Pro školy",
+    text: "Na základní škole dostanou děti prostor snít bez hranic. Na střední škole studenti promění vybrané nápady ve funkční prototypy.",
+    benefit: "Kreativita, spolupráce a zkušenost, která přesahuje běžnou výuku.",
+    href: "/zapoj-se#skola",
+    cta: "Zapojit školu",
+  },
+  {
+    number: "02",
+    label: "Studenti vysokých škol",
+    title: "Pro vysokoškoláky",
+    text: "Vezmete dětskou skicu a v mezioborovém týmu z ní vytvoříte technický návrh, který se skutečně postaví.",
+    benefit: "Reálný projekt do portfolia, praxe a spolupráce s odborníky.",
+    href: "/zapoj-se#student",
+    cta: "Přidat se k týmu",
+  },
+  {
+    number: "03",
+    label: "Firmy a odborní partneři",
+    title: "Pro firmy",
+    text: "Podpoříte konkrétní dětský vynález financemi, materiálem nebo zkušenostmi mentorů z vašich řad.",
+    benefit: "Smysluplné partnerství, viditelný výsledek a kontakt s talenty.",
+    href: "/zapoj-se#firma",
+    cta: "Stát se patronem",
+  },
 ];
 
 function PartnerTile({ partner }: { partner: Partner }) {
@@ -78,9 +95,9 @@ export default function Home() {
               Skutečný stroj.
             </h1>
             <p className={styles.heroText}>
-              Děti vymyslí stroj svých snů. Studenti a firmy ho společně
-              postaví. Nápad se mění v realitu — a děti zjistí, že dokážou
-              cokoliv.
+              Žáci základních škol vymyslí stroj svých snů. Vysokoškoláci ho
+              navrhnou a studenti středních škol s firmami společně postaví.
+              Děti tak zjistí, že jejich nápady mohou změnit svět.
             </p>
             <div className={styles.heroBtns}>
               <a href="#jak" className={styles.heroBtnWhite}>
@@ -152,6 +169,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ============ PRO KOHO PROGRAM JE ============ */}
+      <section className={styles.audiences} aria-labelledby="audiences-title">
+        <div className="container">
+          <div className={styles.audiencesHead}>
+            <div>
+              <span className="eyebrow">Tři cesty, jeden společný výsledek</span>
+              <h2 id="audiences-title" className={`display ${styles.audiencesTitle}`}>
+                Kde je vaše místo?
+              </h2>
+            </div>
+            <p className={styles.audiencesLead}>
+              MyMachine propojuje školy, vysokoškoláky a firmy v jednom
+              celoročním projektu. Každý přináší něco jiného — a bez žádné z
+              těchto rolí by dětský vynález nevznikl.
+            </p>
+          </div>
+
+          <div className={styles.audiencesGrid}>
+            {audiences.map((audience) => (
+              <article key={audience.number} className={styles.audienceCard}>
+                <div className={styles.audienceMeta}>
+                  <span className={styles.audienceNumber}>{audience.number}</span>
+                  <span className={styles.audienceLabel}>{audience.label}</span>
+                </div>
+                <h3 className={styles.audienceTitle}>{audience.title}</h3>
+                <p className={styles.audienceText}>{audience.text}</p>
+                <p className={styles.audienceBenefit}>{audience.benefit}</p>
+                <Link href={audience.href} className={styles.audienceLink}>
+                  {audience.cta}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ============ O PROGRAMU ============ */}
       <section id="program" className={styles.program}>
         <div className="container">
@@ -198,10 +252,35 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <div className={styles.programGlobal}>
+            <div className={styles.programGlobalNumbers} aria-label="5 kontinentů a 15 zemí">
+              <div>
+                <strong>5</strong>
+                <span>kontinentů</span>
+              </div>
+              <div>
+                <strong>15</strong>
+                <span>zemí</span>
+              </div>
+            </div>
+            <div>
+              <span className="eyebrow">Mezinárodní přesah</span>
+              <h3 className={styles.programGlobalTitle}>
+                Mezinárodně uznávaný program
+              </h3>
+              <p className={styles.programGlobalText}>
+                MyMachine je součástí iniciativy MyMachine Global Foundation.
+                Vznikla v Belgii a dnes propojuje školy, studenty a firmy na
+                pěti kontinentech. V roce 2025 ji MIT Solve vybral mezi TOP 10
+                STEAM řešení v USA.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ============ VYNÁLEZY — UKÁZKA (carousel) ============ */}
+      {/* ============ VYNÁLEZY — UKÁZKA ============ */}
       <InventionsSection inventions={featuredInventions} />
 
       {/* ============ STATS BAND ============ */}
@@ -301,106 +380,13 @@ export default function Home() {
               </div>
             </div>
 
-            <div className={styles.mapCanvas}>
-              <svg
-                viewBox="0 0 800 700"
-                preserveAspectRatio="xMidYMid meet"
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
-                aria-hidden="true"
-              >
-                <polygon
-                  points="447,40 560,120 650,210 690,300 720,400 720,470 700,560 640,610 520,640 400,630 300,600 210,560 160,470 150,390 180,300 230,220 300,140 370,80"
-                  fill="rgba(203,205,21,0.06)"
-                  stroke="rgba(203,205,21,0.34)"
-                  strokeWidth="2.5"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              {mapCities.map((city) => (
-                <div
-                  key={city.label}
-                  style={{
-                    position: "absolute",
-                    left: city.left,
-                    top: city.top,
-                    width: 0,
-                    height: 0,
-                  }}
-                >
-                  <span
-                    style={{
-                      position: "absolute",
-                      left: -city.size / 2,
-                      top: -city.size / 2,
-                      width: city.size,
-                      height: city.size,
-                      borderRadius: "50%",
-                      background: "var(--accent)",
-                      border: "2px solid #0a0a0a",
-                      boxShadow:
-                        city.size === 20
-                          ? "0 0 0 3px rgba(203,205,21,0.28), 0 0 16px rgba(203,205,21,0.65)"
-                          : "0 0 12px rgba(203,205,21,0.55)",
-                    }}
-                  />
-                  <span
-                    style={{
-                      position: "absolute",
-                      fontFamily: "var(--font-wide)",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      fontSize: city.size === 20 ? 11 : 10,
-                      letterSpacing: "0.05em",
-                      color: "#fff",
-                      background: "rgba(0,0,0,0.62)",
-                      padding: city.size === 20 ? "3px 9px" : "3px 8px",
-                      borderRadius: 6,
-                      whiteSpace: "nowrap",
-                      ...(city.labelSide === "top"
-                        ? {
-                            left: "50%",
-                            bottom: city.size === 20 ? 16 : 13,
-                            transform: "translateX(-50%)",
-                          }
-                        : { right: 16, top: -8 }),
-                    }}
-                  >
-                    {city.label}
-                  </span>
-                </div>
-              ))}
-              <span className={styles.mapCorner}>Jihomoravský kraj</span>
-            </div>
+            <SchoolsMap />
           </div>
         </div>
       </section>
 
-      {/* ============ CITACE UČITELE ============ */}
-      <section className={styles.quote}>
-        <div className={styles.quoteInner}>
-          <span className={styles.quoteMark}>„</span>
-          <blockquote className={styles.quoteText}>
-            Poprvé jsem viděla, jak se do hodiny naplno zapojily i děti, které
-            techniku do té doby míjely. Zjistily, že jejich vlastní nápad má
-            cenu — a ten pocit už jim nikdo nevezme.
-          </blockquote>
-          <div className={styles.quoteMeta}>
-            <ImageSlot
-              src="/assets/photos/portrait.jpg"
-              alt="Foto"
-              height={54}
-              radius={27}
-              style={{ width: 54, flex: "none", borderRadius: "50%" }}
-            />
-            <div style={{ textAlign: "left" }}>
-              <div className={styles.quoteName}>Jana Nováková</div>
-              <div className={styles.quoteRole}>
-                Učitelka · ZŠ Otevřená, Žebětín
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ============ NOVINKY ============ */}
+      <NewsSection news={homeNews} />
 
       {/* ============ PARTNEŘI ============ */}
       <section id="partneri" className={styles.partners}>
@@ -445,24 +431,6 @@ export default function Home() {
               <PartnerTile key={p.alt} partner={p} />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ============ MEZINÁRODNĚ ============ */}
-      <section className={styles.global}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/images/shape-orange.png" alt="" className={styles.globalShape} />
-        <div className={styles.globalInner}>
-          <span className="eyebrow" style={{ color: "#cbcd15" }}>
-            5 kontinentů · 15 zemí
-          </span>
-          <h2 className={styles.globalH2}>Mezinárodně uznávaný program</h2>
-          <p className={styles.globalText}>
-            MyMachine je součástí mezinárodní iniciativy MyMachine Global
-            Foundation. Vznikla v Belgii a dnes se realizuje v 15 zemích na 5
-            kontinentech. V roce 2025 ji MIT Solve vybral mezi TOP 10 STEAM
-            řešení v USA.
-          </p>
         </div>
       </section>
 
@@ -515,9 +483,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ============ NOVINKY (carousel) ============ */}
-      <NewsSection news={homeNews} />
 
       <Footer bottomPad={88} />
     </div>

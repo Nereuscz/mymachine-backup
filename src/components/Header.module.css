@@ -48,12 +48,6 @@
   color: var(--accent);
 }
 
-.navDivider {
-  width: 1px;
-  height: 14px;
-  background: var(--header-line);
-}
-
 .cta {
   display: inline-flex;
   align-items: center;
@@ -106,14 +100,20 @@
   background: currentColor;
 }
 
-@media (min-width: 901px) {
+@media (min-width: 1121px) {
   .menuBtn {
     display: none;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1120px) {
   .nav {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .cta {
     display: none;
   }
 }

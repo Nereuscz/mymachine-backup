@@ -14,10 +14,12 @@ type HeaderProps = {
 };
 
 const HOME_NAV = [
-  { href: "/#jak", label: "Jak to funguje", key: "jak" },
-  { href: "/#program", label: "O programu", key: "program" },
-  { href: "/#partneri", label: "Partneři", key: "partneri" },
-  { href: "/#kontakt", label: "Kontakt", key: "kontakt" },
+  { href: "#jak", label: "Jak to funguje", key: "jak" },
+  { href: "#program", label: "O programu", key: "program" },
+  { href: "#vynalezy", label: "Vynálezy", key: "vynalezy" },
+  { href: "#novinky", label: "Novinky", key: "novinky" },
+  { href: "#partneri", label: "Partneři", key: "partneri" },
+  { href: "#kontakt", label: "Kontakt", key: "kontakt" },
 ];
 
 export default function Header({
@@ -32,8 +34,6 @@ export default function Header({
     variant === "home"
       ? [
           ...HOME_NAV,
-          { href: "/novinky", label: "Novinky", key: "novinky" },
-          { href: "/vynalezy", label: "Vynálezy", key: "vynalezy" },
           { href: "/zapoj-se", label: "Zapoj se", key: "zapoj" },
         ]
       : [
@@ -60,19 +60,12 @@ export default function Header({
         </Link>
 
         {variant === "home" ? (
-          <nav className={styles.nav} style={{ gap: 26 }}>
+          <nav className={styles.nav} style={{ gap: 24 }}>
             {HOME_NAV.map((item) => (
               <a key={item.href} href={item.href} className={styles.navLink}>
                 {item.label}
               </a>
             ))}
-            <span className={styles.navDivider} />
-            <Link href="/vynalezy" className={styles.navLink}>
-              Vynálezy
-            </Link>
-            <Link href="/novinky" className={styles.navLink}>
-              Novinky
-            </Link>
           </nav>
         ) : (
           <nav className={styles.nav} style={{ gap: 22 }}>
