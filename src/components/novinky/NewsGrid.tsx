@@ -45,24 +45,28 @@ export default function NewsGrid({ posts }: { posts: NewsPost[] }) {
       <section className={styles.gridSection}>
         <div className={styles.grid}>
           {visible.map((post) => (
-            <article key={post.title} className={styles.card}>
-              <div className={styles.media}>
-                <ImageSlot
-                  src={post.image}
-                  alt="Foto článku"
-                  height={190}
-                />
-                <span className={styles.badge}>{post.category}</span>
-              </div>
-              <div className={styles.body}>
-                <span className={styles.date}>{post.date}</span>
-                <h3 className={styles.title}>{post.title}</h3>
-                <p className={styles.excerpt}>{post.excerpt}</p>
-                <Link href={post.href} className={styles.readLink}>
-                  Číst článek
-                </Link>
-              </div>
-            </article>
+            <Link
+              key={post.title}
+              href={post.href}
+              className={styles.card}
+              aria-label={`Číst článek: ${post.title}`}
+            >
+              <article>
+                <div className={styles.media}>
+                  <ImageSlot src={post.image} alt={post.title} height={190} />
+                  <span className={styles.badge}>{post.category}</span>
+                </div>
+                <div className={styles.body}>
+                  <span className={styles.date}>{post.date}</span>
+                  <h3 className={styles.title}>{post.title}</h3>
+                  <p className={styles.excerpt}>{post.excerpt}</p>
+                  <span className={styles.readLink}>
+                    Číst článek
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       </section>

@@ -15,6 +15,45 @@
   --glow: 0 0 30px rgba(203, 205, 21, 0.4);
 }
 
+.simpleHeader {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 14px clamp(20px, 5vw, 56px);
+  border-bottom: 1px solid var(--hairline);
+  background: #000;
+}
+
+.logoLink {
+  display: inline-flex;
+}
+
+.logoLink img {
+  display: block;
+  width: auto;
+  height: 36px;
+}
+
+.backLink {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--fg);
+  font-family: var(--font-wide);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.backLink:hover {
+  color: var(--accent);
+}
+
 /* ---- Hero ---- */
 .hero {
   position: relative;
@@ -76,10 +115,10 @@
   margin: 22px auto 0;
 }
 
-/* ---- Závěrečný pás „Jak vaše role zapadá" ---- */
+/* ---- Společné vysvětlení „Jak vaše role zapadá" ---- */
 .flowSection {
   background: #0c0c0c;
-  border-top: 1px solid var(--hairline);
+  border-block: 1px solid var(--hairline);
   padding: clamp(48px, 7vw, 84px) clamp(20px, 5vw, 56px);
 }
 
@@ -136,9 +175,170 @@
   margin: 0;
 }
 
+/* ---- Social proof pilotního ročníku ---- */
+.proofSection {
+  background: var(--accent);
+  color: #0c0c0c;
+  padding: clamp(52px, 7vw, 88px) clamp(20px, 5vw, 56px);
+}
+
+.proofInner {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+}
+
+.proofHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  column-gap: clamp(32px, 6vw, 88px);
+  align-items: end;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.proofEyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: 12px;
+  color: rgba(12, 12, 12, 0.68);
+  font-family: var(--font-wide);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.proofTitle {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 0.92;
+}
+
+.proofText {
+  max-width: 490px;
+  margin: 0 0 4px;
+  color: rgba(12, 12, 12, 0.78);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.55;
+}
+
+.proofGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid rgba(12, 12, 12, 0.26);
+}
+
+.proofStat {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 32px) clamp(12px, 2vw, 24px);
+  border-right: 1px solid rgba(12, 12, 12, 0.26);
+}
+
+.proofStat:first-child {
+  padding-left: 0;
+}
+
+.proofStat:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.proofStat strong,
+.proofStat span {
+  display: block;
+}
+
+.proofStat strong {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.proofStat span {
+  margin-top: 12px;
+  font-family: var(--font-wide);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
 /* Responzivní pravidlo ze <style> bloku návrhu */
+@media (max-width: 1080px) {
+  .proofGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .proofStat:nth-child(3) {
+    border-right: 0;
+  }
+
+  .proofStat:nth-child(-n + 3) {
+    border-bottom: 1px solid rgba(12, 12, 12, 0.26);
+  }
+
+  .proofStat:nth-child(4) {
+    padding-left: 0;
+  }
+}
+
 @media (max-width: 860px) {
   .flowGrid {
     grid-template-columns: 1fr;
+  }
+
+  .proofHead {
+    grid-template-columns: 1fr;
+  }
+
+  .proofText {
+    margin-top: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .simpleHeader {
+    min-height: 64px;
+  }
+
+  .logoLink img {
+    height: 30px;
+  }
+
+  .backLink {
+    font-size: 0;
+  }
+
+  .backLink span {
+    font-size: 22px;
+  }
+
+  .proofGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .proofStat,
+  .proofStat:nth-child(3) {
+    padding-inline: 16px;
+    border-right: 1px solid rgba(12, 12, 12, 0.26);
+    border-bottom: 1px solid rgba(12, 12, 12, 0.26);
+  }
+
+  .proofStat:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .proofStat:nth-child(even) {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .proofStat:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import styles from "./ZapojTabs.module.css";
 
@@ -245,22 +246,59 @@ export default function ZapojTabs() {
   const [tab, setTab] = useState<TabKey>("skola");
 
   useEffect(() => {
-    const h = (window.location.hash || "").replace("#", "");
-    if (h === "skola" || h === "student" || h === "firma") {
-      setTab(h);
-    }
+    const syncTabWithHash = () => {
+      const hash = (window.location.hash || "").replace("#", "");
+      if (hash === "skola" || hash === "student" || hash === "firma") {
+        setTab(hash);
+      }
+    };
+
+    const frame = window.requestAnimationFrame(syncTabWithHash);
+    window.addEventListener("hashchange", syncTabWithHash);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", syncTabWithHash);
+    };
   }, []);
+
+  const selectTab = (key: TabKey) => {
+    setTab(key);
+    window.history.replaceState(null, "", `#${key}`);
+  };
 
   return (
     <>
+      <section className={styles.choiceSection} aria-labelledby="choice-title">
+        <div className={styles.choiceHead}>
+          <span className="eyebrow">Vyberte svou roli</span>
+          <h2 id="choice-title" className={`display ${styles.choiceTitle}`}>
+            Jak se chcete zapojit?
+          </h2>
+          <p className={styles.choiceText}>
+            Každá cesta má jinou roli, časovou náročnost i přínos. Přepněte se
+            mezi možnostmi a najděte tu svou.
+          </p>
+        </div>
+      </section>
+
       {/* Sticky lišta se záložkami (kotva #cesty) */}
       <div id="cesty" className={styles.tabBar}>
-        <div className={styles.tabBarInner}>
+        <div
+          className={styles.tabBarInner}
+          role="tablist"
+          aria-label="Způsob zapojení do MyMachine"
+        >
           {PANELS.map((panel) => (
             <button
               key={panel.key}
+              id={`tab-${panel.key}`}
               type="button"
-              onClick={() => setTab(panel.key)}
+              role="tab"
+              aria-selected={tab === panel.key}
+              aria-controls={`panel-${panel.key}`}
+              tabIndex={tab === panel.key ? 0 : -1}
+              onClick={() => selectTab(panel.key)}
               className={
                 tab === panel.key
                   ? `${styles.tab} ${styles.tabActive}`
@@ -269,6 +307,9 @@ export default function ZapojTabs() {
             >
               <span className={styles.tabNum}>{panel.num}</span>
               <span className={styles.tabLabel}>{panel.tabLabel}</span>
+              <span className={styles.tabState}>
+                {tab === panel.key ? "Vybráno" : "Zobrazit cestu"}
+              </span>
             </button>
           ))}
         </div>
@@ -278,7 +319,10 @@ export default function ZapojTabs() {
       {PANELS.map((panel) => (
         <div
           key={panel.key}
-          style={{ display: tab === panel.key ? "block" : "none" }}
+          id={`panel-${panel.key}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${panel.key}`}
+          hidden={tab !== panel.key}
         >
           {/* Úvod: text + fotka */}
           <section className={styles.sectionIntro}>
@@ -354,9 +398,9 @@ export default function ZapojTabs() {
                   <p className={styles.noticeTitle}>{panel.notice.title}</p>
                   <p className={styles.noticeText}>{panel.notice.text}</p>
                 </div>
-                <a href="/#kontakt" className={styles.ctaBtn}>
+                <Link href="/#kontakt" className={styles.ctaBtn}>
                   {panel.ctaLabel}
-                </a>
+                </Link>
               </div>
             </div>
           </section>

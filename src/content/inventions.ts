@@ -25,7 +25,7 @@ export type InventionChip = {
   name: string;
 };
 
-/** Kompletní vynález pro stránku /vynalezy (editorial stack s carouselem). */
+/** Kompletní vynález pro stránku /vynalezy (editorial stack s galerií). */
 export type InventionDetail = {
   id: string;
   title: string;
@@ -35,11 +35,11 @@ export type InventionDetail = {
   chips: InventionChip[];
   /** Zkrácený název firemního patrona (bez právní formy). */
   patron: string;
-  /** Tři fotky do carouselu: návrh, finální foto, z výroby. */
+  /** Fotky galerie: návrh, finální foto, z výroby. */
   slides: InventionSlide[];
 };
 
-/** Čtyři vynálezy v carouselu na domovské stránce (pořadí dle návrhu). */
+/** Čtyři vynálezy ve výběru na domovské stránce (pořadí dle návrhu). */
 export const featuredInventions: Invention[] = [
   {
     title: "LED Kšiltovka",

@@ -12,6 +12,13 @@ export const metadata: Metadata = {
     "Úžasné vynálezy, které se díky kreativitě a odvaze mladých tvůrců stanou skutečností. Od dětské skici až po funkční prototyp.",
 };
 
+const yearStats = [
+  { value: "400+", label: "dětí ze základních škol" },
+  { value: "80+", label: "studentů středních škol" },
+  { value: "32+", label: "vysokoškoláků" },
+  { value: String(allInventions.length), label: "hotových vynálezů" },
+];
+
 /** Stránka Vynálezy — 1:1 převod návrhu Vynalezy.dc.html. */
 export default function VynalezyPage() {
   return (
@@ -34,6 +41,29 @@ export default function VynalezyPage() {
             Úžasné vynálezy, které se díky kreativitě a odvaze mladých tvůrců
             stanou skutečností. Od dětské skici až po funkční prototyp.
           </p>
+        </div>
+      </section>
+
+      {/* INFOGRAFIKA ROČNÍKU */}
+      <section className={styles.yearOverview} aria-labelledby="year-overview-title">
+        <div className={styles.yearOverviewInner}>
+          <div className={styles.yearOverviewHead}>
+            <span className="eyebrow">Ročník v číslech</span>
+            <h2
+              id="year-overview-title"
+              className={`display ${styles.yearOverviewTitle}`}
+            >
+              Jeden rok společného vynalézání
+            </h2>
+          </div>
+          <div className={styles.yearStats}>
+            {yearStats.map((stat) => (
+              <div key={stat.label} className={styles.yearStat}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

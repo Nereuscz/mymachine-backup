@@ -1,70 +1,78 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ImageSlot from "@/components/ImageSlot";
 import type { InventionDetail } from "@/content/inventions";
 import styles from "./InventionCard.module.css";
 
-/**
- * Karta vynálezu na stránce /vynalezy — editorial řádek s foto carouselem.
- * Chování 1:1 dle logiky návrhu (Vynalezy.dc.html): každá karta má vlastní
- * index snímku, šipky posouvají cyklicky, tečky skáčou přímo na snímek.
- */
 export default function InventionCard({
   invention,
 }: {
   invention: InventionDetail;
 }) {
-  const [index, setIndex] = useState(0);
-  const count = invention.slides.length;
-  // Normalizace indexu (v návrhu ((i % n) + n) % n) — stav držíme vždy platný.
-  const idx = ((index % count) + count) % count;
+  const gallerySlides = invention.slides.slice(0, 2);
+  const [activeSlide, setActiveSlide] = useState<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lightboxOpen = activeSlide !== null;
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveSlide(null);
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveSlide((current) =>
+          current === null
+            ? null
+            : (current - 1 + gallerySlides.length) % gallerySlides.length
+        );
+      }
+      if (event.key === "ArrowRight") {
+        setActiveSlide((current) =>
+          current === null ? null : (current + 1) % gallerySlides.length
+        );
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      previousFocus?.focus();
+    };
+  }, [gallerySlides.length, lightboxOpen]);
 
   return (
     <article className={styles.row}>
-      <div className={styles.media}>
-        {/* Pás snímků — posun o -idx × 100 % s přechodem dle návrhu */}
-        <div
-          className={styles.track}
-          style={{ transform: `translateX(${-idx * 100}%)` }}
-        >
-          {invention.slides.map((slide) => (
-            <div key={slide.src} className={styles.slide}>
-              <ImageSlot
-                src={slide.src}
-                alt={slide.alt}
-                style={{ minHeight: 0 }}
-              />
-            </div>
-          ))}
-        </div>
-        <button
-          type="button"
-          aria-label="Předchozí"
-          className={`${styles.navBtn} ${styles.navBtnPrev}`}
-          onClick={() => setIndex((idx - 1 + count) % count)}
-        >
-          ‹
-        </button>
-        <button
-          type="button"
-          aria-label="Další"
-          className={`${styles.navBtn} ${styles.navBtnNext}`}
-          onClick={() => setIndex((idx + 1) % count)}
-        >
-          ›
-        </button>
-        <div className={styles.dots}>
-          {invention.slides.map((slide, j) => (
-            <button
-              key={slide.src}
-              type="button"
-              aria-label="Foto"
-              className={j === idx ? `${styles.dot} ${styles.dotActive}` : styles.dot}
-              onClick={() => setIndex(j)}
+      <div className={styles.gallery} aria-label={`Galerie: ${invention.title}`}>
+        {gallerySlides.map((slide, index) => (
+          <button
+            key={slide.src}
+            type="button"
+            className={styles.thumbnail}
+            onClick={() => setActiveSlide(index)}
+            aria-label={`Zvětšit fotografii: ${slide.alt}`}
+          >
+            <ImageSlot
+              src={slide.src}
+              alt={slide.alt}
+              radius={0}
+              style={{ minHeight: 0 }}
             />
-          ))}
-        </div>
+            <span className={styles.expandLabel} aria-hidden="true">
+              Zvětšit
+              <span>↗</span>
+            </span>
+          </button>
+        ))}
       </div>
 
       <div className={styles.body}>
@@ -86,6 +94,62 @@ export default function InventionCard({
           </span>
         </div>
       </div>
+
+      {activeSlide !== null && (
+        <div
+          className={styles.lightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Zvětšená galerie: ${invention.title}`}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setActiveSlide(null);
+          }}
+        >
+          <button
+            ref={closeButtonRef}
+            type="button"
+            className={styles.lightboxClose}
+            onClick={() => setActiveSlide(null)}
+            aria-label="Zavřít galerii"
+          >
+            Zavřít ×
+          </button>
+
+          <div className={styles.lightboxContent}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={gallerySlides[activeSlide].src}
+              alt={gallerySlides[activeSlide].alt}
+            />
+          </div>
+
+          <div className={styles.lightboxControls}>
+            <button
+              type="button"
+              onClick={() =>
+                setActiveSlide(
+                  (activeSlide - 1 + gallerySlides.length) % gallerySlides.length
+                )
+              }
+              aria-label="Předchozí fotografie"
+            >
+              ←
+            </button>
+            <span>
+              {activeSlide + 1} / {gallerySlides.length}
+            </span>
+            <button
+              type="button"
+              onClick={() =>
+                setActiveSlide((activeSlide + 1) % gallerySlides.length)
+              }
+              aria-label="Další fotografie"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      )}
     </article>
   );
 }

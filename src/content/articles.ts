@@ -16,7 +16,15 @@ export type ArticleBlock =
     }
   | { type: "heading"; text: string }
   | { type: "quote"; text: string; author: string }
-  | { type: "image"; src: string; alt: string; caption: string };
+  | { type: "image"; src: string; alt: string; caption: string }
+  | {
+      type: "cta";
+      eyebrow: string;
+      title: string;
+      text: string;
+      href: string;
+      buttonLabel: string;
+    };
 
 /** Položka pásu klíčových čísel pod hero fotkou. */
 export type ArticleStat = {
@@ -125,6 +133,14 @@ export const articles: Article[] = [
       {
         type: "paragraph",
         text: "Pilotní ročník skončil, ale program pokračuje. Na podzim otevíráme přihlašování pro rok 2026/2027 — hledáme dalších 12 základních a 12 středních škol a 12 vysokoškolských týmů z Jihomoravského kraje. Pokud chcete, aby i sny vašich dětí dostaly podobu skutečného stroje, ozvěte se nám.",
+      },
+      {
+        type: "cta",
+        eyebrow: "Přihlášky 2026/2027",
+        title: "Přidejte se k dalšímu ročníku",
+        text: "Vyberte si svou roli a zjistěte, jak se může zapojit vaše škola, univerzitní tým nebo firma.",
+        href: "/zapoj-se",
+        buttonLabel: "Vybrat cestu zapojení",
       },
       {
         type: "paragraph",

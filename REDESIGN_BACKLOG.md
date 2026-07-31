@@ -39,11 +39,21 @@ Priority jsou pracovní návrh a je potřeba je potvrdit před plánováním rea
 | HP-02 | Sekce Vynálezy je zjednodušená na přehlednou mřížku aktuálního ročníku a obsahuje tlačítko na samostatnou stránku `/vynalezy`. |
 | HP-03 | Původní schéma nahradila interaktivní OpenStreetMap mapa. Aktuální rozsah zobrazuje Brno a okolí, Znojmo, Višňové, Hustopeče, Kyjov, Milotice a Hodonín. Mapa je uzamčená na Jihomoravský kraj, výchozí pohled je přiblížený o jeden stupeň, má tmavý vizuální styl a mobilní názvy se zobrazují klepnutím. |
 | HP-04 | Sekce Novinky je přesunutá přímo pod mapu zapojených škol. |
+| HP-05 | Partneři jsou nově seskupení do tří jasných úrovní: hlavní univerzitní partner, instituce a partneři projektu a firemní patroni. Loga mají sjednocené rozměry a kompaktnější responzivní mřížku. |
 | HP-06 | Kontakt je poslední obsahová sekce před footerem. |
 | HP-07 | Blok „Mezinárodně uznávaný program“ je začleněný do sekce O programu. |
 | HP-08 | Samostatná citace byla z homepage odstraněná. |
 | HP-09 | Vynálezy a Novinky v hlavní navigaci vedou na kotvy homepage; samostatné stránky zůstávají dostupné tlačítky v daných sekcích. |
 | HP-10 | Homepage zobrazuje tři nejnovější články, každý se samostatným datem publikace. |
+| ZS-01 | Stránka „Chci se zapojit“ má místo plné globální navigace jednoduchou hlavičku s logem a jednoznačným návratem na homepage. |
+| ZS-04 | Výběr školy, vysokoškoláka a firmy má výraznější aktivní stav, doprovodné instrukce a přístupnou strukturu záložek. |
+| ZS-05 | Společné vysvětlení návaznosti všech rolí je přesunuté nad výběr konkrétní cesty. |
+| ZS-07 | Stránka „Chci se zapojit“ obsahuje social proof pilotního ročníku 2025/2026: počty škol, dětí, středoškoláků, vysokoškoláků, firemních patronů a hotových vynálezů. |
+| VY-01 | Stránka Vynálezy obsahuje infografiku pilotního ročníku s počty zapojených dětí, středoškoláků, vysokoškoláků a dokončených vynálezů. |
+| VY-03 | Každý vynález má dvě miniatury vedle sebe. Fotografie lze zvětšit do popupu, přepínat šipkami a zavřít tlačítkem, kliknutím mimo obsah nebo klávesou `Esc`. |
+| BL-02 | Celá karta článku je klikací, má viditelný hover i focus stav a jasně reaguje posunem šipky a fotografie. |
+| BL-03 | Detail článku používá jednotnou tmavou variantu bez přepínače vzhledu. |
+| BL-04 | Strukturovaný obsah článku podporuje výraznější citační blok a opakovaně použitelný CTA blok s odkazem. |
 
 ### Doplňkové opravy
 

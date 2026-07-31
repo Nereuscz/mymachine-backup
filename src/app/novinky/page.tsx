@@ -45,24 +45,24 @@ export default function NovinkyPage() {
             Vyber si cestu a pojď proměnit dětský sen ve stroj.
           </p>
           <div className={styles.ctaBtns}>
-            <a
+            <Link
               href="/zapoj-se#skola"
               className={`${styles.btn} ${styles.btnAccent}`}
             >
               Přihlásit školu
-            </a>
-            <a
+            </Link>
+            <Link
               href="/zapoj-se#student"
               className={`${styles.btn} ${styles.btnOutline}`}
             >
               Přidat se do týmu
-            </a>
-            <a
+            </Link>
+            <Link
               href="/zapoj-se#firma"
               className={`${styles.btn} ${styles.btnOutline}`}
             >
               Stát se patronem
-            </a>
+            </Link>
           </div>
         </div>
       </section>

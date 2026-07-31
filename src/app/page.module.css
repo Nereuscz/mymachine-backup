@@ -727,88 +727,186 @@
   padding: 0 clamp(20px, 5vw, 56px) clamp(64px, 9vw, 110px);
 }
 
+.partnersHead {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(28px, 6vw, 80px);
+  align-items: end;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
 .partnersH2 {
   font-size: clamp(34px, 5.5vw, 68px);
   line-height: 0.95;
-  margin: 0 0 clamp(40px, 5vw, 60px);
-  text-align: center;
+  margin: 14px 0 0;
 }
 
-.groupTitle {
-  text-align: center;
+.partnersLead {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.55;
+}
+
+.partnerFeature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  overflow: hidden;
   margin-bottom: 18px;
+  border: 1px solid rgba(203, 205, 21, 0.28);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(203, 205, 21, 0.13), transparent 38%),
+    var(--card);
 }
 
-.groupTitle span {
+.partnerFeatureCopy {
+  padding: clamp(28px, 4vw, 48px);
+}
+
+.partnerFeatureLabel,
+.partnerGroupCount {
   font-family: var(--font-wide);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.12em;
 }
 
-.mainTile {
-  width: 280px;
-  height: 120px;
+.partnerFeatureLabel {
+  color: var(--accent);
+}
+
+.partnerFeatureTitle {
+  margin: 14px 0 10px;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 58px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.partnerFeatureText {
+  max-width: 540px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.partnerFeatureLogo {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 190px;
   background: #fff;
-  border-radius: 16px;
-  padding: 24px 28px;
+  padding: clamp(32px, 5vw, 58px);
 }
 
-.tileGrid {
+.partnerFeatureLogo img {
+  width: min(100%, 290px);
+  max-height: 110px;
+  object-fit: contain;
+}
+
+.partnerGroup {
+  padding: clamp(26px, 4vw, 40px) 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.partnerGroupHead {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.partnerGroupTitle {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-wide);
+  font-size: clamp(14px, 1.7vw, 18px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.partnerGroupCount {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.partnerGrid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-bottom: 44px;
-}
-
-@media (max-width: 820px) {
-  .tileGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .tile {
-  height: 96px;
+  min-width: 0;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  border-radius: 14px;
-  padding: 16px 20px;
+  border-radius: 12px;
+  padding: 15px 18px;
 }
 
-.tile img,
-.mainTile img {
+.tile img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.9;
-  transition: filter 0.2s, opacity 0.2s;
+  opacity: 0.84;
+  transition: filter 0.2s, opacity 0.2s, transform 0.2s;
 }
 
-.tile:hover img,
-.mainTile:hover img {
+.tile:hover img {
   filter: none;
   opacity: 1;
+  transform: scale(1.03);
 }
 
-.projectGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  max-width: 760px;
-  margin: 0 auto;
+.patronGrid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-@media (max-width: 820px) {
-  .projectGrid {
+@media (max-width: 900px) {
+  .partnersHead,
+  .partnerFeature {
     grid-template-columns: 1fr;
+  }
+
+  .partnerFeatureLogo {
+    min-height: 150px;
+  }
+
+  .partnerGrid,
+  .patronGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .partnerGroupHead {
+    display: block;
+  }
+
+  .partnerGroupCount {
+    display: block;
+    margin-top: 6px;
+  }
+
+  .partnerGrid,
+  .patronGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tile {
+    height: 78px;
+    padding: 13px 14px;
   }
 }
 

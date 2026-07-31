@@ -67,6 +67,65 @@
   margin: 22px auto 0;
 }
 
+/* ---- Infografika ročníku ---- */
+.yearOverview {
+  padding: clamp(52px, 7vw, 84px) clamp(20px, 5vw, 56px);
+  border-bottom: 1px solid var(--hairline);
+  background: #0c0c0c;
+}
+
+.yearOverviewInner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(36px, 7vw, 90px);
+  align-items: end;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.yearOverviewTitle {
+  max-width: 520px;
+  margin: 14px 0 0;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 0.95;
+}
+
+.yearStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+
+.yearStat {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(20px, 3vw, 30px);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.yearStat strong {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 74px);
+  font-weight: 700;
+  line-height: 0.85;
+}
+
+.yearStat span {
+  max-width: 170px;
+  color: var(--muted);
+  font-family: var(--font-wide);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
 /* ---- Editorial stack vynálezů ---- */
 .stack {
   background: var(--bg);
@@ -134,4 +193,16 @@
 .ctaBtn:hover {
   border-color: #cbcd15;
   background: rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width: 820px) {
+  .yearOverviewInner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .yearStat {
+    min-height: 128px;
+  }
 }

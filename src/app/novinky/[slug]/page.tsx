@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -76,6 +77,18 @@ function renderBlock(block: ArticleBlock, index: number) {
           />
           <figcaption className={styles.caption}>{block.caption}</figcaption>
         </figure>
+      );
+    case "cta":
+      return (
+        <aside key={index} className={styles.articleCta}>
+          <span className={styles.articleCtaEyebrow}>{block.eyebrow}</span>
+          <h2 className={styles.articleCtaTitle}>{block.title}</h2>
+          <p className={styles.articleCtaText}>{block.text}</p>
+          <Link href={block.href} className={styles.articleCtaButton}>
+            {block.buttonLabel}
+            <span aria-hidden="true">→</span>
+          </Link>
+        </aside>
       );
   }
 }
@@ -176,14 +189,14 @@ export default async function ClanekPage({ params }: PageProps) {
           <h2 className={styles.relatedTitle}>Další příběhy</h2>
           <div className={styles.relatedGrid}>
             {article.related.map((post) => (
-              <a key={post.title} href={post.href} className={styles.relatedCard}>
+              <Link key={post.title} href={post.href} className={styles.relatedCard}>
                 <ImageSlot src={post.image} alt={post.title} height={160} />
                 <div className={styles.relatedBody}>
                   <span className={styles.relatedDate}>{post.date}</span>
                   <h3 className={styles.relatedHeading}>{post.title}</h3>
                   <span className={styles.relatedMore}>Číst článek</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

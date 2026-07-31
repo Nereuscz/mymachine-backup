@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Header from "@/components/Header";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import ZapojTabs from "@/components/zapoj/ZapojTabs";
+import { allInventions } from "@/content/inventions";
+import { patrons } from "@/content/partners";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -20,7 +22,7 @@ const flowSteps = [
   {
     step: "Krok 02",
     title: "VŠ navrhne",
-    text: "Vysokoškoláci proměnní nápad v technický návrh.",
+    text: "Vysokoškoláci promění nápad v technický návrh.",
   },
   {
     step: "Krok 03",
@@ -34,10 +36,35 @@ const flowSteps = [
   },
 ];
 
+const proofStats = [
+  { value: "9", label: "zapojených základních škol" },
+  { value: "400+", label: "malých vynálezců" },
+  { value: "80+", label: "studentů středních škol" },
+  { value: "32+", label: "vysokoškoláků" },
+  { value: String(patrons.length), label: "firemních patronů" },
+  { value: String(allInventions.length), label: "hotových vynálezů" },
+];
+
 export default function ZapojSePage() {
   return (
     <div className={styles.page}>
-      <Header variant="sub" active="zapoj" ctaHref="#cesty" />
+      <header className={styles.simpleHeader}>
+        <Link
+          href="/"
+          className={styles.logoLink}
+          aria-label="Zpět na domovskou stránku MyMachine Czechia"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/brand/mymachine-czechia-white.png"
+            alt="MyMachine Czechia"
+          />
+        </Link>
+        <Link href="/" className={styles.backLink}>
+          <span aria-hidden="true">←</span>
+          Zpět na homepage
+        </Link>
+      </header>
 
       {/* ---- Hero ---- */}
       <section className={styles.hero}>
@@ -61,9 +88,6 @@ export default function ZapojSePage() {
         </div>
       </section>
 
-      {/* ---- Přepínač záložek + panely škola / student / firma ---- */}
-      <ZapojTabs />
-
       {/* ---- Sdílený pás „Jak vaše role zapadá" ---- */}
       <section className={styles.flowSection}>
         <div className="container">
@@ -84,6 +108,33 @@ export default function ZapojSePage() {
           </div>
         </div>
       </section>
+
+      {/* ---- Výsledky pilotního ročníku ---- */}
+      <section className={styles.proofSection} aria-labelledby="proof-title">
+        <div className={styles.proofInner}>
+          <div className={styles.proofHead}>
+            <span className={styles.proofEyebrow}>Pilotní ročník 2025/2026</span>
+            <h2 id="proof-title" className={`display ${styles.proofTitle}`}>
+              Už jsme to společně dokázali
+            </h2>
+            <p className={styles.proofText}>
+              Za první rok se kolem dětských nápadů propojily školy, studenti,
+              univerzity i firmy z Jihomoravského kraje.
+            </p>
+          </div>
+          <ul className={styles.proofGrid} aria-label="Výsledky pilotního ročníku">
+            {proofStats.map((stat) => (
+              <li key={stat.label} className={styles.proofStat}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---- Přepínač záložek + panely škola / student / firma ---- */}
+      <ZapojTabs />
 
       <Footer />
     </div>

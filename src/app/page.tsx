@@ -17,6 +17,8 @@ import {
 } from "@/content/partners";
 import styles from "./page.module.css";
 
+const ecosystemPartners = [...institutions, ...projectPartners];
+
 const phases = [
   {
     badge: "Fáze 01",
@@ -391,45 +393,66 @@ export default function Home() {
       {/* ============ PARTNEŘI ============ */}
       <section id="partneri" className={styles.partners}>
         <div className="container">
-          <h2 className={`display ${styles.partnersH2}`}>
-            Kdo je v tom s námi
-          </h2>
-
-          <div className={styles.groupTitle}>
-            <span>Hlavní univerzitní partner</span>
+          <div className={styles.partnersHead}>
+            <div>
+              <span className="eyebrow">Síť, která dává nápadům tvar</span>
+              <h2 className={`display ${styles.partnersH2}`}>
+                Kdo je v tom s námi
+              </h2>
+            </div>
+            <p className={styles.partnersLead}>
+              Školy, univerzity, veřejné instituce a firmy spojují zkušenosti,
+              technologie i materiál, aby mohly dětské nápady skutečně vzniknout.
+            </p>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: 44 }}>
-            <div className={styles.mainTile}>
+
+          <div className={styles.partnerFeature}>
+            <div className={styles.partnerFeatureCopy}>
+              <span className={styles.partnerFeatureLabel}>
+                Hlavní univerzitní partner
+              </span>
+              <h3 className={styles.partnerFeatureTitle}>VUT v Brně</h3>
+              <p className={styles.partnerFeatureText}>
+                Univerzitní zázemí propojuje dětské vize s týmy studentů,
+                které je proměňují v technické návrhy.
+              </p>
+            </div>
+            <div className={styles.partnerFeatureLogo}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={mainPartner.src} alt={mainPartner.alt} />
             </div>
           </div>
 
-          <div className={styles.groupTitle}>
-            <span>Univerzity a instituce</span>
-          </div>
-          <div className={styles.tileGrid}>
-            {institutions.map((p) => (
-              <PartnerTile key={p.alt} partner={p} />
-            ))}
-          </div>
-
-          <div className={styles.groupTitle}>
-            <span>Firemní patroni vynálezů</span>
-          </div>
-          <div className={styles.tileGrid}>
-            {patrons.map((p) => (
-              <PartnerTile key={p.alt} partner={p} />
-            ))}
+          <div className={styles.partnerGroup}>
+            <div className={styles.partnerGroupHead}>
+              <h3 className={styles.partnerGroupTitle}>
+                Instituce a partneři projektu
+              </h3>
+              <span className={styles.partnerGroupCount}>
+                {ecosystemPartners.length} partnerů
+              </span>
+            </div>
+            <div className={styles.partnerGrid}>
+              {ecosystemPartners.map((partner) => (
+                <PartnerTile key={partner.alt} partner={partner} />
+              ))}
+            </div>
           </div>
 
-          <div className={styles.groupTitle}>
-            <span>Partneři projektu</span>
-          </div>
-          <div className={styles.projectGrid}>
-            {projectPartners.map((p) => (
-              <PartnerTile key={p.alt} partner={p} />
-            ))}
+          <div className={styles.partnerGroup}>
+            <div className={styles.partnerGroupHead}>
+              <h3 className={styles.partnerGroupTitle}>
+                Firemní patroni vynálezů
+              </h3>
+              <span className={styles.partnerGroupCount}>
+                {patrons.length} patronů
+              </span>
+            </div>
+            <div className={`${styles.partnerGrid} ${styles.patronGrid}`}>
+              {patrons.map((partner) => (
+                <PartnerTile key={partner.alt} partner={partner} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
