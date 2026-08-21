@@ -78,7 +78,7 @@
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(36px, 7vw, 90px);
-  align-items: end;
+  align-items: center;
   max-width: 1180px;
   margin: 0 auto;
 }
@@ -98,13 +98,15 @@
 }
 
 .yearStat {
-  display: flex;
-  min-height: 150px;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  min-height: clamp(176px, 15vw, 210px);
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
   padding: clamp(20px, 3vw, 30px);
   border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
+  text-align: center;
 }
 
 .yearStat strong {
@@ -112,11 +114,11 @@
   font-family: var(--font-display);
   font-size: clamp(44px, 6vw, 74px);
   font-weight: 700;
-  line-height: 0.85;
+  line-height: 0.8;
 }
 
 .yearStat span {
-  max-width: 170px;
+  max-width: 210px;
   color: var(--muted);
   font-family: var(--font-wide);
   font-size: 10px;
@@ -207,6 +209,7 @@
 
 @media (max-width: 520px) {
   .yearStat {
-    min-height: 128px;
+    min-height: 150px;
+    gap: 12px;
   }
 }
