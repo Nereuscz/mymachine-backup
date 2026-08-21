@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
-  /** "home" — kotvy sekcí na domovské stránce; "sub" — Domů/Novinky/Vynálezy */
+  /** "home" — kotvy sekcí na domovské stránce; "sub" — kontextová navigace podstránky. */
   variant?: "home" | "sub";
   /** Aktivní položka navigace (zvýrazněná akcentem — v nav i menu overlay). */
   active?: "novinky" | "vynalezy" | "zapoj";
@@ -41,6 +41,23 @@ export default function Header({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
+  const subNavLinks =
+    active === "vynalezy"
+      ? [
+          { href: "/", label: "Domů", key: "domu" },
+          { href: "/vynalezy", label: "Vynálezy", key: "vynalezy" },
+        ]
+      : active === "novinky"
+        ? [
+            { href: "/", label: "Domů", key: "domu" },
+            { href: "/novinky", label: "Novinky", key: "novinky" },
+          ]
+        : [
+            { href: "/", label: "Domů", key: "domu" },
+            { href: "/novinky", label: "Novinky", key: "novinky" },
+            { href: "/vynalezy", label: "Vynálezy", key: "vynalezy" },
+          ];
+
   const overlayLinks =
     variant === "home"
       ? [
@@ -48,9 +65,7 @@ export default function Header({
           { href: "/zapoj-se", label: "Zapoj se", key: "zapoj" },
         ]
       : [
-          { href: "/", label: "Domů", key: "domu" },
-          { href: "/novinky", label: "Novinky", key: "novinky" },
-          { href: "/vynalezy", label: "Vynálezy", key: "vynalezy" },
+          ...subNavLinks,
           { href: "/zapoj-se", label: "Zapoj se", key: "zapoj" },
         ];
 
@@ -80,21 +95,15 @@ export default function Header({
           </nav>
         ) : (
           <nav className={styles.nav} style={{ gap: 22 }}>
-            <Link href="/" className={styles.navLink}>
-              Domů
-            </Link>
-            <Link
-              href="/novinky"
-              className={active === "novinky" ? styles.navLinkActive : styles.navLink}
-            >
-              Novinky
-            </Link>
-            <Link
-              href="/vynalezy"
-              className={active === "vynalezy" ? styles.navLinkActive : styles.navLink}
-            >
-              Vynálezy
-            </Link>
+            {subNavLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={item.key === active ? styles.navLinkActive : styles.navLink}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
         )}
 

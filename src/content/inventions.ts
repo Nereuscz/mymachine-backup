@@ -25,10 +25,12 @@ export type InventionChip = {
   name: string;
 };
 
-/** Kompletní vynález pro stránku /vynalezy (editorial stack s galerií). */
+/** Kompletní vynález pro kartu a detailní popup na stránce /vynalezy. */
 export type InventionDetail = {
   id: string;
   title: string;
+  /** Krátký perex zobrazený přímo v přehledové kartě. */
+  excerpt: string;
   /** Odstavce popisu (v návrhu inv.paras). */
   paras: string[];
   /** Štítky škol — zkratka + název (bez firemního partnera). */
@@ -87,6 +89,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "led",
     title: "LED Kšiltovka",
+    excerpt:
+      "Svítící kšiltovka, která mění barvy podle nálady a pomáhá sdílet emoce beze slov.",
     paras: [
       "Kšiltovka, která mění barvy podle nálady. Původně to mělo být LED triko na fotbal – aby trenér nebo zdravotník hned viděl, jak se kdo cítí: jestli je smutný, veselý, naštvaný, nebo dokonce zraněný.",
       "Vynález umožňuje sdílet emoce beze slov. Říká si o pozornost nebo o podporu, když je to potřeba, a přitom je to super cool svítící doplněk na trénink, do školy i jen tak ven s kamarády.",
@@ -107,6 +111,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "nosic",
     title: "Nosič obědů",
+    excerpt:
+      "Robotický pomocník přiveze jídlo ke stolu, odveze nádobí a pozná, kam který tác patří.",
     paras: [
       "Děti si vysnily pomocníka, který přiveze jídlo až ke stolu, odnese nádobí a ještě se zeptá, jak chutnalo. V návrhu nechybělo robotické rameno na více tácú a dotykový displej pro hlasování o chuti oběda.",
       "Prototyp robotického nosiče má zatím jednodušší podobu. Místo skutečného jídla vozí modely vytištěné na 3D tiskárně. Už teď ale umí jezdit po nakreslených čárách, rozpoznat barvu tácu a podle ní dovézt jídlo od výdejního okénka ke správnému stolu.",
@@ -127,6 +133,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "ucebnik",
     title: "Učebník s flaškou se zásobníkem na vodu",
+    excerpt:
+      "Chytrá aktovka sama vysune správné učebnice a propojená láhev automaticky doplní vodu.",
     paras: [
       "Spojili jsme dva dětské nápady do jednoho chytrého řešení. Učebník je upravená aktovka, která po stisknutí tlačítka sama vysune učebnice na konkrétní předmět.",
       "K tomu je propojená chytrá flaška s vlastním zásobníkem na vodu – když se vypije, automaticky se doplní. Díky tomuhle vynálezu mají děti méně stresu při chystání do školy, větší přehled v aktovce a dostatek pití po celý den.",
@@ -147,6 +155,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "asr",
     title: "Automatický skládací robot (ASR)",
+    excerpt:
+      "Malý robot z 3D tiskárny ukrývá praktické pomůcky pro školu i každý den.",
     paras: [
       "ASR je malý automatický robot plný vychytávek, celý vytištěný na 3D tiskárně. Říká se mu skládací robot, protože má stejnou funkci jako skládací nůž.",
       "Najdete v něm zubní kartáček, kalkulačku, budík, ořezávátko, stojan na pendrl­íky, hodiny, mini tiskárnu na vtipy, baterku i razítko. Zkrátka všechno, co se může hodit – vždy po ruce a na jednom místě.",
@@ -167,6 +177,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "megatron",
     title: "Megatron",
+    excerpt:
+      "Pojízdné autíčko doveze majiteli jídlo a nabídne úložný prostor na příbor i další drobnosti.",
     paras: [
       "Jde o pojízdné autíčko pojmenované po jednom z Transformerů, jehož hlavním úkolem je nosit svému majiteli jídlo přesně podle jeho libosti.",
       "Autíčko má i úložný prostor, kam si můžete odložit například příbor, nápoj nebo jiné drobnosti, které chcete mít po ruce. Stačí zadat požadavek a Megatron vyrazí do akce.",
@@ -187,6 +199,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "napoj",
     title: "Nápojový automat s AI",
+    excerpt:
+      "Automat si s vámi popovídá a podle nálady i chuti namíchá originální nápoj na míru.",
     paras: [
       "Tenhle automat nebude jen tak ledajaký. Místo klasického výběru čísla a zmáčknutí tlačítka si popovídáte s umělou inteligencí.",
       "Řeknete jí, jak se dnes cítíte, na co máte chuť, jestli potřebujete povzbudit, uklidnit nebo jen něco dobrého na pití – a AI vám z dostupných ingrediencí namíchá drink přesně na míru. Každý nápoj je originál, stejně jako člověk, pro kterého vznikl.",
@@ -207,6 +221,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "bobot",
     title: "Bobot",
+    excerpt:
+      "Chytrý robotický koš přijme odpadky, sám je vynese a uklidí i nepořádek kolem sebe.",
     paras: [
       "Původní návrh byl opravdu ambiciózní. Multifunkční robůtek měl zvládat vše od zábavy až po pomoc v domácnosti. Středoškoláci a vysokoškolský tým se nakonec zaměřili na to nejzajímavější – chytrý koš, který odpadky přijme i sám vynese.",
       "Stačí vhodit dovnitř a Bobot se o zbytek postará. Díky průsvitnému tělu z plexiskla můžeš celý proces sledovat. Bobot navíc pomocí robotického ramene posbírá i nepořádek kolem sebe.",
@@ -227,6 +243,8 @@ export const allInventions: InventionDetail[] = [
   {
     id: "vetrak",
     title: "Chodící větrák v mexickém stylu",
+    excerpt:
+      "Dálkově ovládaný větrák přijede ochladit přesně tam, kde ho právě potřebujete.",
     paras: [
       "Chodící větrák se ovládá dálkově, jezdí, kam mu řeknete, a chladí přesně tam, kde je potřeba. Už žádné přenášení větráku po pokoji – tentokrát přijde ochlazení přímo za vámi.",
       "A protože je v mexickém stylu, nechybí sombréro ani třeba nacho. Po obvodu má LED úsek měnící barvu. Středoškoláci mu dali jméno Carmen, děti ze základky zase Pablo. A upřímně? Sedí mu obě.",
