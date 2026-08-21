@@ -47,8 +47,8 @@ export const featuredInventions: Invention[] = [
     description:
       "Kšiltovka, která mění barvy podle nálady — emoce sdílíš beze slov, ať jsi na tréninku nebo ve škole.",
     tags: ["ZŠ Otevřená, Žebětín", "SŠ Purkyňka, Brno", "VUT FEKT"],
-    image: "/assets/photos/news1.jpg",
-    imageAlt: "Foto vynálezu LED Kšiltovka",
+    image: "/assets/inventions/led-ksiltovka.jpg",
+    imageAlt: "Finální prototyp LED kšiltovky",
   },
   {
     title: "Nosič obědů",
@@ -56,8 +56,8 @@ export const featuredInventions: Invention[] = [
     description:
       "Robot, který přiveze jídlo až ke stolu, odnese nádobí a ještě se zeptá, jak chutnalo.",
     tags: ["ZŠ Hodonín", "SŠ polytechnická, Kyjov", "VUT FSI"],
-    image: "/assets/photos/lab.jpg",
-    imageAlt: "Foto vynálezu Nosič obědů",
+    image: "/assets/inventions/nosic-obedu.jpg",
+    imageAlt: "Finální prototyp robotického nosiče obědů",
   },
   {
     title: "Megatron",
@@ -65,8 +65,8 @@ export const featuredInventions: Invention[] = [
     description:
       "Pojízdné autíčko, které svému majiteli doveze jídlo přesně podle jeho libosti — a schová i příbor.",
     tags: ["ZŠ Husova 17, Brno", "SŠTE Olomoucká, Brno", "VUT FSI"],
-    image: "/assets/photos/inline.jpg",
-    imageAlt: "Foto vynálezu Megatron",
+    image: "/assets/inventions/megatron.jpg",
+    imageAlt: "Finální prototyp Megatron s účastníky projektu",
   },
   {
     title: "Chodící větrák",
@@ -74,16 +74,14 @@ export const featuredInventions: Invention[] = [
     description:
       "Dálkově ovládaný větrák v mexickém stylu, co přijede chladit přesně tam, kde ho potřebuješ.",
     tags: ["ZŠ Milotice", "SŠ polytechnická, Kyjov", "VUT FEKT"],
-    image: "/assets/photos/news3.jpg",
-    imageAlt: "Foto vynálezu Chodící větrák",
+    image: "/assets/inventions/chodici-vetrak.jpg",
+    imageAlt: "Finální prototyp chodícího větráku v mexickém stylu",
   },
 ];
 
 /**
  * Všech osm vynálezů pilotního ročníku pro stránku /vynalezy.
- * Fotky ve slides odpovídají rotaci placeholderů z návrhu
- * (skica → finální foto → z výroby); při napojení na CMS se nahradí
- * skutečnými fotkami jednotlivých vynálezů.
+ * Každý vynález obsahuje finální fotografii prototypu z ročníku 2025/2026.
  */
 export const allInventions: InventionDetail[] = [
   {
@@ -100,9 +98,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "TE Connectivity",
     slides: [
-      { src: "/assets/photos/sketch.jpg", alt: "LED Kšiltovka — návrh" },
-      { src: "/assets/photos/news1.jpg", alt: "LED Kšiltovka — finální foto" },
-      { src: "/assets/photos/news4.jpg", alt: "LED Kšiltovka — z výroby" },
+      {
+        src: "/assets/inventions/led-ksiltovka.jpg",
+        alt: "Finální prototyp LED kšiltovky",
+      },
     ],
   },
   {
@@ -119,9 +118,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "NXP Semiconductors",
     slides: [
-      { src: "/assets/photos/drawing.jpg", alt: "Nosič obědů — návrh" },
-      { src: "/assets/photos/lab.jpg", alt: "Nosič obědů — finální foto" },
-      { src: "/assets/photos/news3.jpg", alt: "Nosič obědů — z výroby" },
+      {
+        src: "/assets/inventions/nosic-obedu.jpg",
+        alt: "Finální prototyp robotického nosiče obědů",
+      },
     ],
   },
   {
@@ -138,9 +138,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "BioVendor – Laboratorní medicína",
     slides: [
-      { src: "/assets/photos/sketch.jpg", alt: "Učebník — návrh" },
-      { src: "/assets/photos/inline.jpg", alt: "Učebník — finální foto" },
-      { src: "/assets/photos/portrait.jpg", alt: "Učebník — z výroby" },
+      {
+        src: "/assets/inventions/ucebnak.jpg",
+        alt: "Finální prototyp učebníku s chytrou flaškou",
+      },
     ],
   },
   {
@@ -157,9 +158,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "Bohemia Interactive",
     slides: [
-      { src: "/assets/photos/drawing.jpg", alt: "ASR — návrh" },
-      { src: "/assets/photos/news2.jpg", alt: "ASR — finální foto" },
-      { src: "/assets/photos/hero.jpg", alt: "ASR — z výroby" },
+      {
+        src: "/assets/inventions/automaticky-skladaci-robot.jpg",
+        alt: "Finální prototyp automatického skládacího robota",
+      },
     ],
   },
   {
@@ -176,9 +178,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "Garrett Motion",
     slides: [
-      { src: "/assets/photos/sketch.jpg", alt: "Megatron — návrh" },
-      { src: "/assets/photos/news1.jpg", alt: "Megatron — finální foto" },
-      { src: "/assets/photos/news4.jpg", alt: "Megatron — z výroby" },
+      {
+        src: "/assets/inventions/megatron.jpg",
+        alt: "Finální prototyp Megatron s účastníky projektu",
+      },
     ],
   },
   {
@@ -195,9 +198,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "Yunex Traffic",
     slides: [
-      { src: "/assets/photos/drawing.jpg", alt: "Nápojový automat s AI — návrh" },
-      { src: "/assets/photos/lab.jpg", alt: "Nápojový automat s AI — finální foto" },
-      { src: "/assets/photos/news3.jpg", alt: "Nápojový automat s AI — z výroby" },
+      {
+        src: "/assets/inventions/napojovy-automat.jpg",
+        alt: "Finální prototyp nápojového automatu s AI",
+      },
     ],
   },
   {
@@ -214,9 +218,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "AT&T Global Network Services CZ",
     slides: [
-      { src: "/assets/photos/sketch.jpg", alt: "Bobot — návrh" },
-      { src: "/assets/photos/inline.jpg", alt: "Bobot — finální foto" },
-      { src: "/assets/photos/portrait.jpg", alt: "Bobot — z výroby" },
+      {
+        src: "/assets/inventions/bobot.jpg",
+        alt: "Finální prototyp robota Bobot",
+      },
     ],
   },
   {
@@ -233,9 +238,10 @@ export const allInventions: InventionDetail[] = [
     ],
     patron: "ABB",
     slides: [
-      { src: "/assets/photos/drawing.jpg", alt: "Chodící větrák — návrh" },
-      { src: "/assets/photos/news2.jpg", alt: "Chodící větrák — finální foto" },
-      { src: "/assets/photos/hero.jpg", alt: "Chodící větrák — z výroby" },
+      {
+        src: "/assets/inventions/chodici-vetrak.jpg",
+        alt: "Finální prototyp chodícího větráku v mexickém stylu",
+      },
     ],
   },
 ];

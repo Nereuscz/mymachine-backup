@@ -10,7 +10,7 @@ export default function InventionCard({
 }: {
   invention: InventionDetail;
 }) {
-  const gallerySlides = invention.slides.slice(0, 2);
+  const gallerySlides = invention.slides;
   const [activeSlide, setActiveSlide] = useState<number | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const lightboxOpen = activeSlide !== null;
@@ -52,7 +52,12 @@ export default function InventionCard({
 
   return (
     <article className={styles.row}>
-      <div className={styles.gallery} aria-label={`Galerie: ${invention.title}`}>
+      <div
+        className={`${styles.gallery} ${
+          gallerySlides.length === 1 ? styles.gallerySingle : ""
+        }`}
+        aria-label={`Galerie: ${invention.title}`}
+      >
         {gallerySlides.map((slide, index) => (
           <button
             key={slide.src}
@@ -123,31 +128,33 @@ export default function InventionCard({
             />
           </div>
 
-          <div className={styles.lightboxControls}>
-            <button
-              type="button"
-              onClick={() =>
-                setActiveSlide(
-                  (activeSlide - 1 + gallerySlides.length) % gallerySlides.length
-                )
-              }
-              aria-label="Předchozí fotografie"
-            >
-              ←
-            </button>
-            <span>
-              {activeSlide + 1} / {gallerySlides.length}
-            </span>
-            <button
-              type="button"
-              onClick={() =>
-                setActiveSlide((activeSlide + 1) % gallerySlides.length)
-              }
-              aria-label="Další fotografie"
-            >
-              →
-            </button>
-          </div>
+          {gallerySlides.length > 1 && (
+            <div className={styles.lightboxControls}>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveSlide(
+                    (activeSlide - 1 + gallerySlides.length) % gallerySlides.length
+                  )
+                }
+                aria-label="Předchozí fotografie"
+              >
+                ←
+              </button>
+              <span>
+                {activeSlide + 1} / {gallerySlides.length}
+              </span>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveSlide((activeSlide + 1) % gallerySlides.length)
+                }
+                aria-label="Další fotografie"
+              >
+                →
+              </button>
+            </div>
+          )}
         </div>
       )}
     </article>

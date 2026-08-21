@@ -21,6 +21,14 @@
   background: #000;
 }
 
+.gallerySingle {
+  grid-template-columns: 1fr;
+}
+
+.gallerySingle .thumbnail img {
+  object-fit: contain !important;
+}
+
 .thumbnail {
   position: relative;
   min-width: 0;
