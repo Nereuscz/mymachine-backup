@@ -31,6 +31,12 @@ type Panel = {
   image: { src: string; alt: string };
   /** Obrázek jako první v DOM s CSS order (panel Vysokoškolák) — na mobilu je text první. */
   imageFirst: boolean;
+  tracks?: Array<{
+    label: string;
+    title: string;
+    text: string;
+    details: string[];
+  }>;
   cards: PanelCard[];
   faqs: PanelFaq[];
   notice: { label: string; title: string; text: string };
@@ -43,13 +49,11 @@ const PANELS: Panel[] = [
     num: "01",
     tabLabel: "Učitel / škola",
     eyebrow: "Cesta 01 · Vaše škola",
-    title: "Přiveďte své žáky k vynálézání",
+    title: "Přiveďte své žáky k vynalézání",
     paragraphs: [
       <>
-        Zapojte třídu, kroužek nebo celou školu.{" "}
-        <strong>Základní školy</strong> vymýšlejí stroje svých snů,{" "}
-        <strong>střední školy</strong> je pomáhají stavět. My dodáme metodiku i
-        lektory — vy dodáte prostor a chuť.
+        Základní a střední školy mají v MyMachine odlišnou roli i časovou
+        náročnost. Níže proto najdete podmínky pro každý typ školy zvlášť.
       </>,
       <>
         Zapadne to do výuky fyziky, techniky i informatiky, nebo do
@@ -61,6 +65,28 @@ const PANELS: Panel[] = [
       alt: "Foto: děti kreslí vynálezy",
     },
     imageFirst: false,
+    tracks: [
+      {
+        label: "Základní škola",
+        title: "Děti vymýšlejí vynálezy",
+        text: "Preferujeme zapojení dvou tříd, primárně 4. ročníků. Děti procházejí kreativními workshopy a formulují nápady, které pak rozvíjejí další týmy.",
+        details: [
+          "Ideálně dvě třídy 4. ročníku",
+          "Kreativní workshopy v září a říjnu",
+          "Návštěva univerzity a partnerské střední školy",
+        ],
+      },
+      {
+        label: "Střední škola",
+        title: "Studenti staví prototyp",
+        text: "Vítáme gymnázia i střední odborné školy. Tým může spojit studenty napříč ročníky a obory; ideální velikost je přibližně 10 studentů.",
+        details: [
+          "Přibližně 10 studentů v týmu",
+          "Možnost zapojit různé ročníky i obory",
+          "Realizace vynálezu od února do května",
+        ],
+      },
+    ],
     cards: [
       {
         icon: "/assets/icons/stem-science-green.svg",
@@ -90,7 +116,7 @@ const PANELS: Panel[] = [
       },
       {
         q: "Pro jaké ročníky to je?",
-        a: "ZŠ zapojuje žáky 2. stupně, SŠ studenty technických i všeobecných oborů. Ozvěte se a doladíme to na míru.",
+        a: "U ZŠ preferujeme dvě třídy 4. ročníku. U SŠ vítáme gymnázia i odborné školy a přibližně deset studentů napříč ročníky či obory.",
       },
       {
         q: "Působíte mimo Jihomoravský kraj?",
@@ -99,8 +125,8 @@ const PANELS: Panel[] = [
     ],
     notice: {
       label: "Termín",
-      title: "Přihlášky pro ročník 2026/2027 jsou otevřené",
-      text: "Hledáme základní i střední školy z kraje. Kapacita je omezená — ozvěte se včas.",
+      title: "Přihlášky škol pro ročník 2026/2027 jsou uzavřené",
+      text: "Kontakt nám můžete zanechat pro další ročník. Při výběru upřednostňujeme ZŠ a SŠ, které se přihlásí společně.",
     },
   },
   {
@@ -108,7 +134,7 @@ const PANELS: Panel[] = [
     num: "02",
     tabLabel: "Vysokoškolák",
     eyebrow: "Cesta 02 · Vysokoškolák",
-    title: "Proměň dětský nápad ve stroj",
+    title: "Proměň dětský nápad ve vynález",
     paragraphs: [
       <>
         V týmu vezmeš dětskou skicu a proměníš ji v technický návrh — a pak
@@ -164,7 +190,7 @@ const PANELS: Panel[] = [
     notice: {
       label: "Nábor",
       title: "Hledáme studenty do týmů pro ročník 2026/2027",
-      text: "Osm dětských vynálezů čeká na svůj tým. Přidej se, dokud jsou místa.",
+      text: "Do týmů pro ročník 2026/2027 se můžeš přihlásit do 31. srpna, sám, s parťákem nebo jako celý tým.",
     },
   },
   {
@@ -177,7 +203,7 @@ const PANELS: Panel[] = [
       <>
         Vezměte jeden dětský vynález za svůj. Podpoříte jeho stavbu financemi,
         materiálem i mentory z vlastních řad — a uvidíte, jak z nápadu vzniká
-        stroj.
+        funkční prototyp.
       </>,
       <>
         Je to CSR, které jde nahmatat: konkrétní výsledek, spojení s VUT a
@@ -377,6 +403,25 @@ export default function ZapojTabs() {
               )}
             </div>
           </section>
+
+          {panel.tracks && (
+            <section className={styles.trackSection} aria-label="Rozdíly zapojení škol">
+              <div className={styles.trackGrid}>
+                {panel.tracks.map((track) => (
+                  <article key={track.label} className={styles.trackCard}>
+                    <span className={styles.kicker}>{track.label}</span>
+                    <h3 className={styles.trackTitle}>{track.title}</h3>
+                    <p className={styles.trackText}>{track.text}</p>
+                    <ul className={styles.trackList}>
+                      {track.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Čtyři karty */}
           <section className={styles.sectionCards}>

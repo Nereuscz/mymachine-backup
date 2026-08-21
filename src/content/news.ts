@@ -138,7 +138,7 @@ const postRows: [NewsPost["category"], string, string, string][] = [
     "Ze škol",
     "28. října 2025",
     "Workshopy MyMachine jsou za námi!",
-    "Do tvoření se zapojilo 9 základních škol, 19 tříd a více než 400 dětí. Děti vymýšlely, kreslily a hlavně přemýšlely úplně jinak.",
+    "Do tvoření se zapojilo 8 základních škol a 410 dětí. Děti vymýšlely, kreslily a hlavně přemýšlely úplně jinak.",
   ],
   [
     "O programu",

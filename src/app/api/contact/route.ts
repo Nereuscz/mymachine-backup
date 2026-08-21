@@ -107,13 +107,14 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
-  const to = process.env.CONTACT_TO_EMAIL || "franekova@btym.cz";
+  const to =
+    process.env.CONTACT_TO_EMAIL || "dominika.franekova@futureshapers.cz";
 
   if (!apiKey || !from) {
     return Response.json(
       {
         message:
-          "Odesílání zpráv se právě nastavuje. Napište nám prosím na franekova@btym.cz.",
+          "Odesílání zpráv se právě nastavuje. Napište nám prosím na dominika.franekova@futureshapers.cz.",
       },
       { status: 503 }
     );
@@ -162,7 +163,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         message:
-          "Zprávu se nepodařilo odeslat. Zkuste to znovu nebo napište na franekova@btym.cz.",
+          "Zprávu se nepodařilo odeslat. Zkuste to znovu nebo napište na dominika.franekova@futureshapers.cz.",
       },
       { status: 502 }
     );

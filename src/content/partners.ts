@@ -15,13 +15,18 @@ const logo = (file: string, alt: string): Partner => ({
 /** Hlavní univerzitní partner. */
 export const mainPartner = logo("vut.png", "VUT v Brně");
 
-/** Univerzity a instituce. */
+/** Hlavní partneři programu. */
+export const mainPartners: Partner[] = [
+  logo("fablab.png", "FabLab Brno"),
+  logo("brno.png", "Statutární město Brno"),
+  logo("jmk.png", "Jihomoravský kraj"),
+];
+
+/** Další univerzity a instituce zapojené do projektu. */
 export const institutions: Partner[] = [
   logo("muni.png", "MUNI"),
   logo("mendelu.png", "MENDELU"),
   logo("unob.png", "Univerzita obrany"),
-  logo("jmk.png", "Jihomoravský kraj"),
-  logo("brno.png", "Statutární město Brno"),
 ];
 
 /** Firemní patroni vynálezů. */
@@ -45,7 +50,6 @@ export const patrons: Partner[] = [
 
 /** Partneři projektu. */
 export const projectPartners: Partner[] = [
-  logo("fablab.png", "FabLab Brno"),
   logo("czechitas.png", "Czechitas"),
   logo("ideastatica.png", "IDEA StatiCa"),
 ];

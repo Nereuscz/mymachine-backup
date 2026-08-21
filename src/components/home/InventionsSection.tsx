@@ -19,7 +19,7 @@ export default function InventionsSection({
           </div>
           <p className={styles.headlineNote}>
             Výběr dětských nápadů, které letos díky společné práci škol,
-            vysokoškoláků a firem ožily jako skutečné stroje.
+            vysokoškoláků a firem ožily jako skutečné prototypy.
           </p>
         </div>
 

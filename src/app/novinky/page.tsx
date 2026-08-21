@@ -36,13 +36,13 @@ export default function NovinkyPage() {
       {/* ============ CTA — ZAPOJ SE ============ */}
       <section className={styles.cta}>
         <div className={styles.ctaInner}>
-          <span className="eyebrow">Tři cesty, jeden stroj</span>
+          <span className="eyebrow">Tři cesty, jeden vynález</span>
           <h2 className={`display ${styles.ctaTitle}`}>
             Zapoj se do MyMachine
           </h2>
           <p className={styles.ctaText}>
             Ať jsi učitel, vysokoškolák nebo firma — máš u nás své místo.
-            Vyber si cestu a pojď proměnit dětský sen ve stroj.
+            Vyber si cestu a pojď proměnit dětský sen ve skutečný vynález.
           </p>
           <div className={styles.ctaBtns}>
             <Link

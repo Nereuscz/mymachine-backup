@@ -9,6 +9,7 @@ import ContactForm from "@/components/home/ContactForm";
 import { featuredInventions } from "@/content/inventions";
 import { homeNews } from "@/content/news";
 import {
+  mainPartners,
   mainPartner,
   institutions,
   patrons,
@@ -17,26 +18,65 @@ import {
 } from "@/content/partners";
 import styles from "./page.module.css";
 
-const ecosystemPartners = [...institutions, ...projectPartners];
+const otherPartners = [...institutions, ...projectPartners];
 
 const phases = [
   {
     badge: "Fáze 01",
     icon: "/assets/icons/stem-science-green.svg",
     title: "Dětský sen",
-    text: "Žák základní školy nakreslí stroj, který by chtěl mít. Žádné hranice, žádné „to nejde“. Jen čistá fantazie.",
+    text: "Žák základní školy nakreslí vynález, který by chtěl mít. Žádné hranice, žádné „to nejde“. Jen čistá fantazie.",
   },
   {
     badge: "Fáze 02",
     icon: "/assets/icons/stem-engineering-green.svg",
     title: "Návrh řešení",
-    text: "Vysokoškoláci promění dětský nápad v konkrétní technický návrh. Z čmáranice vzniká plán.",
+    text: "Vysokoškoláci promění zdánlivě nerealizovatelný dětský nápad v konkrétní technický návrh.",
   },
   {
     badge: "Fáze 03",
     icon: "/assets/icons/stem-technology-green.svg",
     title: "Stavba prototypu",
-    text: "Středoškoláci a firmy postaví funkční prototyp. Sen se stává strojem, který si můžeš osahat.",
+    text: "Středoškoláci a firmy postaví funkční prototyp. Sen se mění ve vynález, který si můžeš osahat.",
+  },
+];
+
+const timeline = [
+  { period: "Září–říjen", title: "Kreativní workshopy na ZŠ" },
+  { period: "Říjen–únor", title: "Návrh technického řešení týmy VŠ" },
+  { period: "Listopad", title: "Rada pro výběr vynálezů" },
+  { period: "Leden–březen", title: "Návštěva ZŠ a SŠ na univerzitě" },
+  { period: "Únor–květen", title: "Realizace vynálezu týmy SŠ" },
+  { period: "Březen–květen", title: "Exkurze k firemním patronům" },
+  { period: "Březen–duben", title: "Návštěva ZŠ na střední škole" },
+  { period: "Červen", title: "Slavnostní EXPO" },
+];
+
+const testimonials = [
+  {
+    quote: "Díky projektu jsem se naučil to, že kreativita může být víc než jenom v myšlence.",
+    author: "Fabián",
+    role: "žák, Základní škola Otevřená, Žebětín",
+  },
+  {
+    quote: "Zapojení do programu MyMachine dalo našim žákům možnost nahlédnout do skutečného světa špičkových technologických firem a být součástí týmu, který změnil jejich sny a představy v realitu.",
+    author: "Jiří Beran",
+    role: "ředitel, Základní škola Višňové",
+  },
+  {
+    quote: "Projekt studenty vede k vzájemné spolupráci a řešení problémů. Nadšení z fungujícího výrobku nic nevynahradí.",
+    author: "Zdeněk Kadeřábek",
+    role: "učitel, Gymnázium Křenová, Brno",
+  },
+  {
+    quote: "MyMachine je krásný experiment, ve kterém děti vymýšlejí nemožné a my z vysoké školy se učíme, že „nemožné“ znamená jen „ještě jsme to nezkusili dost kreativně obejít“.",
+    author: "Student VUT",
+    role: "člen vysokoškolského týmu",
+  },
+  {
+    quote: "Byla to pro nás příležitost dělat něco smysluplného, vystoupit ze zajetých kolejí a podívat se na svět očima dětí. Získali jsme nové zkušenosti i kontakty.",
+    author: "Petra Orsagova",
+    role: "ambassadorka, NXP Semiconductors",
   },
 ];
 
@@ -94,10 +134,10 @@ export default function Home() {
             <h1 className={styles.heroTitle}>
               Dětský sen.
               <br />
-              Skutečný stroj.
+              Skutečný vynález.
             </h1>
             <p className={styles.heroText}>
-              Žáci základních škol vymyslí stroj svých snů. Vysokoškoláci ho
+              Žáci základních škol vymyslí vynález svých snů. Vysokoškoláci ho
               navrhnou a studenti středních škol s firmami společně postaví.
               Děti tak zjistí, že jejich nápady mohou změnit svět.
             </p>
@@ -128,14 +168,14 @@ export default function Home() {
             <span className={styles.bannerPulse} />
             <div>
               <span className={styles.bannerEyebrow}>
-                Přihlašování otevřeno · ročník 2026/2027
+                Nábor vysokoškoláků · ročník 2026/2027
               </span>
               <p className={styles.bannerTitle}>
-                Startujeme v září — přihlaš se už teď přes léto
+                Přihlas se do konce srpna
               </p>
               <p className={styles.bannerText}>
-                Přes prázdniny sbíráme přihlášky škol, studentů i firem a
-                naostro začínáme v září.
+                Přihlášky škol jsou pro tento ročník uzavřené. Vysokoškoláci se
+                mohou hlásit do týmů do 31. srpna.
               </p>
             </div>
           </div>
@@ -149,7 +189,7 @@ export default function Home() {
       <section id="jak" className={styles.how}>
         <div className="container">
           <div className={styles.sectionHead}>
-            <span className="eyebrow">Tři fáze, jeden stroj</span>
+            <span className="eyebrow">Tři fáze, jeden vynález</span>
             <h2 className={`display ${styles.h2}`}>Jak to funguje</h2>
           </div>
           <div className={styles.phaseGrid}>
@@ -224,7 +264,7 @@ export default function Home() {
               <p className={styles.programText}>
                 MyMachine propojí dětskou fantazii s moderními technologiemi.
                 Ukáže dětem, že i ten nejodvážnější nápad může vzniknout — od
-                první skici až po hotový stroj. Děti spolupracují na vymýšlení,
+                první skici až po hotový prototyp. Děti spolupracují na vymýšlení,
                 navrhování i stavbě vlastních vynálezů.
               </p>
             </div>
@@ -281,6 +321,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ============ HARMONOGRAM ============ */}
+      <section className={styles.timeline} aria-labelledby="timeline-title">
+        <div className="container">
+          <div className={styles.timelineHead}>
+            <span className="eyebrow">Od prvního nápadu po EXPO</span>
+            <h2 id="timeline-title" className={`display ${styles.timelineTitle}`}>
+              Harmonogram školního roku
+            </h2>
+          </div>
+          <ol className={styles.timelineGrid}>
+            {timeline.map((item, index) => (
+              <li key={item.title} className={styles.timelineItem}>
+                <span className={styles.timelineNumber}>{String(index + 1).padStart(2, "0")}</span>
+                <span className={styles.timelinePeriod}>{item.period}</span>
+                <strong>{item.title}</strong>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* ============ VYNÁLEZY — UKÁZKA ============ */}
       <InventionsSection inventions={featuredInventions} />
 
@@ -288,11 +349,11 @@ export default function Home() {
       <section className={styles.stats}>
         <div className="container">
           <h2 className={`display ${styles.statsH2}`}>
-            Letošní vynálezci a vynálezkyně
+            Pilotní ročník 2025/2026 v číslech
           </h2>
           <div className={styles.statsGrid}>
             <div className={styles.stat}>
-              <div className={styles.statNum}>400+</div>
+              <div className={styles.statNum}>410</div>
               <div className={styles.statLabel}>Žáků základních škol</div>
               <p className={styles.statText}>
                 Malí vynálezci, kteří tvoří první nápady a představují si
@@ -300,7 +361,7 @@ export default function Home() {
               </p>
             </div>
             <div className={`${styles.stat} ${styles.statMiddle}`}>
-              <div className={styles.statNum}>80+</div>
+              <div className={styles.statNum}>80</div>
               <div className={styles.statLabel}>Studentů středních škol</div>
               <p className={styles.statText}>
                 Zruční tvůrci, kteří promění dětské návrhy v reálné funkční
@@ -308,7 +369,7 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.stat}>
-              <div className={styles.statNum}>32+</div>
+              <div className={styles.statNum}>40</div>
               <div className={styles.statLabel}>Vysokoškoláků</div>
               <p className={styles.statText}>
                 Kreativní designéři a inženýři, kteří hledají nejlepší řešení,
@@ -335,15 +396,11 @@ export default function Home() {
               </p>
               <div className={styles.mapStats}>
                 <div>
-                  <div className={styles.mapStatNum}>9</div>
+                  <div className={styles.mapStatNum}>8</div>
                   <div className={styles.mapStatLabel}>Základních škol</div>
                 </div>
                 <div>
-                  <div className={styles.mapStatNum}>19</div>
-                  <div className={styles.mapStatLabel}>Zapojených tříd</div>
-                </div>
-                <div>
-                  <div className={styles.mapStatNum}>400+</div>
+                  <div className={styles.mapStatNum}>410</div>
                   <div className={styles.mapStatLabel}>Malých vynálezců</div>
                 </div>
               </div>
@@ -386,6 +443,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ============ REFERENCE ============ */}
+      <section className={styles.testimonials} aria-labelledby="testimonials-title">
+        <div className="container">
+          <div className={styles.testimonialsHead}>
+            <span className="eyebrow">Zkušenosti účastníků</span>
+            <h2 id="testimonials-title" className={`display ${styles.testimonialsTitle}`}>
+              Co o MyMachine říkají
+            </h2>
+          </div>
+          <div className={styles.testimonialsGrid}>
+            {testimonials.map((item) => (
+              <blockquote key={item.author} className={styles.testimonial}>
+                <p>„{item.quote}“</p>
+                <footer>
+                  <strong>{item.author}</strong>
+                  <span>{item.role}</span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ============ NOVINKY ============ */}
       <NewsSection news={homeNews} />
 
@@ -403,6 +483,18 @@ export default function Home() {
               Školy, univerzity, veřejné instituce a firmy spojují zkušenosti,
               technologie i materiál, aby mohly dětské nápady skutečně vzniknout.
             </p>
+          </div>
+
+          <div className={styles.partnerGroup}>
+            <div className={styles.partnerGroupHead}>
+              <h3 className={styles.partnerGroupTitle}>Hlavní partneři</h3>
+              <span className={styles.partnerGroupCount}>{mainPartners.length} partneři</span>
+            </div>
+            <div className={styles.partnerGrid}>
+              {mainPartners.map((partner) => (
+                <PartnerTile key={partner.alt} partner={partner} />
+              ))}
+            </div>
           </div>
 
           <div className={styles.partnerFeature}>
@@ -425,14 +517,14 @@ export default function Home() {
           <div className={styles.partnerGroup}>
             <div className={styles.partnerGroupHead}>
               <h3 className={styles.partnerGroupTitle}>
-                Instituce a partneři projektu
+                Partneři projektu
               </h3>
               <span className={styles.partnerGroupCount}>
-                {ecosystemPartners.length} partnerů
+                {otherPartners.length} partnerů
               </span>
             </div>
             <div className={styles.partnerGrid}>
-              {ecosystemPartners.map((partner) => (
+              {otherPartners.map((partner) => (
                 <PartnerTile key={partner.alt} partner={partner} />
               ))}
             </div>

@@ -62,7 +62,7 @@ Priority jsou pracovní návrh a je potřeba je potvrdit před plánováním rea
 
 | ID | Aktuální stav | Co zbývá |
 |---|---|---|
-| HP-11 | Kontaktní formulář má požadovaná pole, klientskou i serverovou validaci, stavy odesílání, honeypot, omezení počtu požadavků a API napojené na Resend. | Na hostingu nastavit `RESEND_API_KEY` a `RESEND_FROM_EMAIL` pro ověřenou doménu a poté provést jeden skutečný test doručení na `franekova@btym.cz`. |
+| HP-11 | Kontaktní formulář má požadovaná pole, klientskou i serverovou validaci, stavy odesílání, honeypot, omezení počtu požadavků a API napojené na Resend. | Na hostingu nastavit `RESEND_API_KEY` a `RESEND_FROM_EMAIL` pro ověřenou doménu a poté provést jeden skutečný test doručení na `dominika.franekova@futureshapers.cz`. |
 | ZS-02 | Škola, vysokoškolák a firma mají vlastní pracovní sadu polí, povinné souhlasy, validaci jednotlivých polí i skupin voleb, přístupné chybové hlášky a transparentní stav po úspěšné kontrole. | Schválit finální pole a texty, zvolit cílové příjemce/evidenci leadů a napojit skutečné odesílání. Do té doby se data z formulářů nikam neodesílají. |
 
 ### Doplňkové opravy

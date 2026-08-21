@@ -3,13 +3,12 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import ZapojTabs from "@/components/zapoj/ZapojTabs";
 import { allInventions } from "@/content/inventions";
-import { patrons } from "@/content/partners";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Zapoj se — MyMachine Czechia",
   description:
-    "Tři cesty, jeden stroj. Vyber si, kým jsi — učitel, vysokoškolák nebo firma — a my ti přesně ukážeme, co to obnáší a jak začít.",
+    "Tři cesty, jeden vynález. Vyber si, kým jsi — učitel, vysokoškolák nebo firma — a my ti přesně ukážeme, co to obnáší a jak začít.",
 };
 
 /* Kroky závěrečného pásu „Jak vaše role zapadá" (Zapoj.dc.html) */
@@ -17,7 +16,7 @@ const flowSteps = [
   {
     step: "Krok 01",
     title: "Děti sní",
-    text: "Žáci ZŠ vymyslí a nakreslí stroj svých snů.",
+    text: "Žáci ZŠ vymyslí a nakreslí vynález svých snů.",
   },
   {
     step: "Krok 02",
@@ -37,11 +36,11 @@ const flowSteps = [
 ];
 
 const proofStats = [
-  { value: "9", label: "zapojených základních škol" },
-  { value: "400+", label: "malých vynálezců" },
-  { value: "80+", label: "studentů středních škol" },
-  { value: "32+", label: "vysokoškoláků" },
-  { value: String(patrons.length), label: "firemních patronů" },
+  { value: "8", label: "zapojených základních škol" },
+  { value: "410", label: "malých vynálezců" },
+  { value: "80", label: "studentů středních škol" },
+  { value: "40", label: "vysokoškoláků" },
+  { value: "9", label: "firemních patronů" },
   { value: String(allInventions.length), label: "hotových vynálezů" },
 ];
 
@@ -79,10 +78,10 @@ export default function ZapojSePage() {
           <h1 className={`display ${styles.heroTitle}`}>
             Tři cesty,
             <br />
-            jeden stroj
+            jeden vynález
           </h1>
           <p className={styles.heroText}>
-            Dětský sen se stane strojem jen díky lidem kolem. Vyber si, kým jsi
+            Dětský sen se stane skutečným vynálezem jen díky lidem kolem. Vyber si, kým jsi
             — a my ti přesně ukážeme, co to obnáší a jak začít.
           </p>
         </div>

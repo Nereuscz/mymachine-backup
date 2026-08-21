@@ -38,9 +38,9 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "MyMachine Czechia — Dětský sen. Skutečný stroj.",
+  title: "MyMachine Czechia — Dětský sen. Skutečný vynález.",
   description:
-    "Děti vymyslí stroj svých snů. Studenti a firmy ho společně postaví. Nápad se mění v realitu — a děti zjistí, že dokážou cokoliv.",
+    "Děti vymyslí vynález svých snů. Studenti a firmy ho společně postaví. Nápad se mění v realitu — a děti zjistí, že dokážou cokoliv.",
 };
 
 export default function RootLayout({

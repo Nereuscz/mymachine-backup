@@ -22,7 +22,7 @@ export default function ZasadyPage() {
           <h1 className={styles.heroTitle}>Zásady &amp; ochrana údajů</h1>
           <p className={styles.heroLead}>
             Jak nakládáme s osobními údaji a cookies na webu MyMachine Czechia.
-            Poslední aktualizace: červenec 2026.
+            Poslední aktualizace: srpen 2026.
           </p>
         </div>
       </section>
@@ -30,64 +30,77 @@ export default function ZasadyPage() {
       {/* TĚLO */}
       <section className={styles.body}>
         <div className={styles.bodyInner}>
-          {/* Upozornění na vzorové znění */}
-          <div className={styles.note}>
-            <span className={styles.noteDot} />
-            <p className={styles.noteText}>
-              Vzorové znění pro web. Před zveřejněním nechte text schválit a
-              doplňte údaje v <strong>hranatých závorkách</strong> (IČO, sídlo,
-              konkrétní analytické nástroje a doby uchování).
-            </p>
-          </div>
-
           {/* 1. OCHRANA OSOBNÍCH ÚDAJŮ */}
           <div id="soukromi" className={styles.section}>
             <span className={styles.partEyebrow}>Část 1</span>
             <h2 className={styles.heading}>Ochrana osobních údajů</h2>
             <p className={styles.text}>
-              Osobní údaje zpracováváme v souladu s nařízením GDPR (EU)
-              2016/679 a zákonem č. 110/2019 Sb. Zpracováváme jen údaje, které
-              jsou pro daný účel nezbytné, a chráníme je před zneužitím.
+              Tento dokument upravuje zpracování osobních údajů v rámci programu
+              MyMachine.
             </p>
 
             <h3 className={styles.subheading}>Správce údajů</h3>
             <p className={styles.text}>
-              JINTEK, z. ú. — provozovatel programu MyMachine Czechia, IČO:
-              [doplňte], se sídlem [doplňte], Brno. Kontakt:{" "}
-              <a href="mailto:franekova@btym.cz" className={styles.mailLink}>
-                franekova@btym.cz
-              </a>
-              , +420 720 867 458.
+              Správcem osobních údajů je JINTEK, z. ú., se sídlem Křížkovského
+              554/12, Pisárky, 603 00 Brno, zapsaný v rejstříku ústavů pod sp.
+              zn. U 420 vedenou u Krajského soudu v Brně, Česká republika.
             </p>
 
             <h3 className={styles.subheading}>Jaké údaje zpracováváme</h3>
             <p className={styles.text}>
-              Údaje z kontaktních a přihlašovacích formulářů (jméno, e‑mail,
-              telefon, škola nebo firma) a technické údaje o návštěvě webu
-              (cookies, IP adresa) v rozsahu nezbytném pro provoz a jeho
-              vyhodnocení.
+              V rámci programu můžeme zpracovávat následující osobní údaje:
+            </p>
+            <ul className={styles.list}>
+              <li>jméno a příjmení, e-mailovou adresu a telefonní číslo,</li>
+              <li>název školy nebo organizace a její adresu,</li>
+              <li>název vysoké školy, fakulty, studijního oboru a ročník studia,</li>
+              <li>název společnosti a pozici ve společnosti,</li>
+              <li>fotografie z aktivit programu, pokud k tomu byl udělen souhlas.</li>
+            </ul>
+
+            <h3 className={styles.subheading}>Účel zpracování</h3>
+            <p className={styles.text}>
+              Údaje používáme pro realizaci vzdělávacího programu MyMachine,
+              komunikaci s účastníky a pedagogy, dokumentaci aktivit programu a
+              zasílání informací o programu.
             </p>
 
-            <h3 className={styles.subheading}>Účel a právní základ</h3>
+            <h3 className={styles.subheading}>Právní základ zpracování</h3>
             <p className={styles.text}>
-              Vyřízení poptávky a přihlášek do programu (plnění smlouvy či
-              opatření před uzavřením smlouvy), zasílání informací o programu
-              (oprávněný zájem nebo souhlas) a analytika webu (souhlas s
-              cookies).
+              Zpracování osobních údajů je založeno na souhlasu subjektů údajů
+              podle čl. 6 odst. 1 písm. a) GDPR a na oprávněném zájmu správce
+              podle čl. 6 odst. 1 písm. f) GDPR.
             </p>
 
             <h3 className={styles.subheading}>Doba uchování</h3>
             <p className={styles.text}>
-              Údaje uchováváme po dobu nezbytnou k danému účelu, nejdéle
-              [doplňte] let od poslední interakce, nebo do odvolání souhlasu.
+              Osobní údaje zpracováváme po dobu trvání programu a následně po
+              dobu 3 let pro účely dokumentace a vyhodnocení efektivity programu.
             </p>
 
             <h3 className={styles.subheading}>Vaše práva</h3>
+            <ul className={styles.list}>
+              <li>právo na přístup k osobním údajům, opravu a výmaz,</li>
+              <li>právo na omezení zpracování a přenositelnost údajů,</li>
+              <li>právo vznést námitku a odvolat souhlas.</li>
+            </ul>
+
+            <h3 className={styles.subheading}>Kontakt</h3>
             <p className={styles.text}>
-              Máte právo na přístup k údajům, jejich opravu či výmaz, omezení
-              zpracování, přenositelnost a vznesení námitky. Souhlas můžete
-              kdykoli odvolat. Máte také právo podat stížnost u Úřadu pro
-              ochranu osobních údajů (uoou.cz).
+              V případě dotazů nás kontaktujte na{" "}
+              <a
+                href="mailto:dominika.franekova@futureshapers.cz"
+                className={styles.mailLink}
+              >
+                dominika.franekova@futureshapers.cz
+              </a>{" "}
+              nebo na telefonním čísle +420 720 867 456.
+            </p>
+
+            <h3 className={styles.subheading}>Závěrečná ustanovení</h3>
+            <p className={styles.text}>
+              Tyto zásady mohou být aktualizovány. O případných změnách budete
+              informováni prostřednictvím webových stránek.
             </p>
           </div>
 

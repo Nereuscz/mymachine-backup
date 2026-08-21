@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const yearStats = [
-  { value: "400+", label: "dětí ze základních škol" },
+  { value: "410", label: "dětí ze základních škol" },
   { value: "80+", label: "studentů středních škol" },
-  { value: "32+", label: "vysokoškoláků" },
+  { value: "40", label: "vysokoškoláků" },
   { value: String(allInventions.length), label: "hotových vynálezů" },
 ];
 
@@ -83,7 +83,7 @@ export default function VynalezyPage() {
         </h2>
         <p className={styles.ctaLead}>
           Přihlaš svou školu nebo žáky do dalšího ročníku MyMachine a proměň
-          dětský sen ve skutečný stroj.
+          dětský sen ve skutečný vynález.
         </p>
         <div className={styles.ctaButtons}>
           <Link href="/zapoj-se#formular-skola" className={styles.ctaBtn}>

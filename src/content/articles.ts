@@ -106,7 +106,7 @@ export const articles: Article[] = [
       },
       {
         type: "paragraph",
-        text: "Všechno začalo dětskou kresbou. Žáci základních škol nakreslili stroj, který by chtěli mít — bez hranic a bez „to nejde\". Středoškoláci pak jejich nápady proměnili v technické návrhy a vysokoškoláci s firemními partnery postavili funkční prototypy. Na EXPU stálo osm z nich, připravených k vyzkoušení.",
+        text: "Všechno začalo dětskou kresbou. Žáci základních škol nakreslili vynález, který by chtěli mít — bez hranic a bez „to nejde\". Středoškoláci pak jejich nápady proměnili v technické návrhy a vysokoškoláci s firemními partnery postavili funkční prototypy. Na EXPU stálo osm z nich, připravených k vyzkoušení.",
       },
       { type: "heading", text: "Osm snů, které ožily" },
       {
@@ -127,12 +127,12 @@ export const articles: Article[] = [
         src: "/assets/photos/inline.jpg",
         alt: "Foto z EXPA — dítě u svého prototypu",
         caption:
-          "Každý prototyp měl svého malého autora, který hrdě vysvětloval, jak jeho stroj funguje.",
+          "Každý prototyp měl svého malého autora, který hrdě vysvětloval, jak jeho vynález funguje.",
       },
       { type: "heading", text: "A jede se dál" },
       {
         type: "paragraph",
-        text: "Pilotní ročník skončil, ale program pokračuje. Na podzim otevíráme přihlašování pro rok 2026/2027 — hledáme dalších 12 základních a 12 středních škol a 12 vysokoškolských týmů z Jihomoravského kraje. Pokud chcete, aby i sny vašich dětí dostaly podobu skutečného stroje, ozvěte se nám.",
+        text: "Pilotní ročník skončil, ale program pokračuje. Přihlašování škol pro rok 2026/2027 je uzavřené; vysokoškoláci se mohou hlásit do konce srpna. Pokud chcete, aby i dětské sny dostaly podobu skutečného vynálezu, ozvěte se nám.",
       },
       {
         type: "cta",

@@ -30,9 +30,9 @@ export default function Footer({ bottomPad = 56 }: FooterProps) {
           <p className={styles.contact}>
             Dominika Franeková
             <br />
-            franekova@btym.cz
+            dominika.franekova@futureshapers.cz
             <br />
-            +420 720 867 458
+            +420 720 867 456
             <br />
             Brno, Česká republika
           </p>

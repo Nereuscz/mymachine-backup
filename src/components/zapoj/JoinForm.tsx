@@ -43,11 +43,11 @@ type FormStatus =
 
 const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
   skola: {
-    eyebrow: "Nezávazný zájem školy",
-    title: "Přihlaste svou školu",
+    eyebrow: "Zájem školy o další ročník",
+    title: "Dejte nám o své škole vědět",
     description:
-      "Napište nám základní informace o škole a představě zapojení. Ozveme se vám a společně vybereme vhodnou cestu pro vaše žáky.",
-    submitLabel: "Připravit přihlášku školy",
+      "Přihlašování škol do ročníku 2026/2027 je uzavřené. Kontakt nám můžete zanechat pro další ročník.",
+    submitLabel: "Připravit e-mail škole",
     emailSubject: "Zájem školy o MyMachine Czechia",
     fields: [
       {
@@ -67,18 +67,27 @@ const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
         label: "Typ školy",
         kind: "select",
         required: true,
-        options: ["Základní škola", "Střední škola", "ZŠ a SŠ", "Jiný typ školy"],
+        options: ["Základní škola", "Střední škola"],
       },
       {
-        name: "city",
-        label: "Město / obec",
+        name: "address",
+        label: "Adresa školy",
         kind: "input",
         type: "text",
-        autoComplete: "address-level2",
-        placeholder: "Brno",
+        autoComplete: "street-address",
+        placeholder: "Ulice, město, PSČ",
         required: true,
-        minLength: 2,
-        maxLength: 100,
+        minLength: 5,
+        maxLength: 200,
+      },
+      {
+        name: "partnerSchool",
+        label: "Partnerská ZŠ / SŠ pro společné zapojení",
+        kind: "input",
+        type: "text",
+        placeholder: "Název partnerské školy (nepovinné)",
+        maxLength: 160,
+        fullWidth: true,
       },
       {
         name: "contactName",
@@ -120,33 +129,10 @@ const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
         maxLength: 40,
       },
       {
-        name: "involvement",
-        label: "Jak se chcete zapojit?",
-        kind: "select",
-        required: true,
-        options: [
-          "ZŠ — vymýšlení dětských vynálezů",
-          "SŠ — stavba funkčního prototypu",
-          "Chceme probrat obě možnosti",
-          "Zatím nevíme",
-        ],
-      },
-      {
-        name: "groupSize",
-        label: "Předpokládaný počet tříd nebo žáků",
-        kind: "input",
-        type: "text",
-        placeholder: "Např. 2 třídy / 45 žáků",
-        maxLength: 100,
-      },
-      {
         name: "message",
-        label: "Co bychom o vaší škole měli vědět?",
+        label: "Zpráva pro tým MyMachine",
         kind: "textarea",
-        placeholder:
-          "Napište nám svou představu, zkušenosti s projektovou výukou nebo otázky…",
-        required: true,
-        minLength: 20,
+        placeholder: "Napište nám svou představu nebo otázky (nepovinné)…",
         maxLength: 2000,
         fullWidth: true,
       },
@@ -156,31 +142,20 @@ const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
     eyebrow: "Nezávazný zájem studenta",
     title: "Přidej se k týmu",
     description:
-      "Pověz nám, co studuješ a v čem by ses chtěl nebo chtěla zapojit. Nemusíš mít hotový tým ani technický obor.",
-    submitLabel: "Připravit studentskou přihlášku",
+      "Do ročníku 2026/2027 se můžeš přihlásit do konce srpna. Hlásit se můžeš sám, s parťákem i jako celý tým.",
+    submitLabel: "Připravit přihlášku e-mailem",
     emailSubject: "Zájem vysokoškoláka o MyMachine Czechia",
     fields: [
       {
-        name: "firstName",
-        label: "Jméno",
+        name: "fullName",
+        label: "Jméno a příjmení",
         kind: "input",
         type: "text",
-        autoComplete: "given-name",
-        placeholder: "Jan",
+        autoComplete: "name",
+        placeholder: "Jan Novák",
         required: true,
-        minLength: 2,
-        maxLength: 80,
-      },
-      {
-        name: "lastName",
-        label: "Příjmení",
-        kind: "input",
-        type: "text",
-        autoComplete: "family-name",
-        placeholder: "Novák",
-        required: true,
-        minLength: 2,
-        maxLength: 80,
+        minLength: 3,
+        maxLength: 160,
       },
       {
         name: "email",
@@ -213,8 +188,8 @@ const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
         maxLength: 160,
       },
       {
-        name: "studyProgram",
-        label: "Fakulta a studijní obor",
+        name: "faculty",
+        label: "Fakulta",
         kind: "input",
         type: "text",
         placeholder: "Fakulta strojního inženýrství…",
@@ -223,53 +198,23 @@ const FORM_CONFIGS: Record<JoinRole, FormConfig> = {
         maxLength: 180,
       },
       {
-        name: "studyYear",
-        label: "Ročník studia",
-        kind: "select",
-        required: true,
-        options: [
-          "1. ročník",
-          "2. ročník",
-          "3. ročník",
-          "4. ročník",
-          "5. a vyšší ročník",
-          "Doktorské studium",
-        ],
-      },
-      {
-        name: "portfolio",
-        label: "Portfolio nebo LinkedIn",
+        name: "teammate",
+        label: "Parťák nebo další členové týmu",
         kind: "input",
-        type: "url",
-        autoComplete: "url",
-        placeholder: "https://…",
+        type: "text",
+        placeholder: "Jméno nebo kontaktní údaje (nepovinné)",
         maxLength: 300,
+        fullWidth: true,
       },
       {
         name: "message",
-        label: "Proč se chceš zapojit?",
+        label: "Co bychom měli vědět?",
         kind: "textarea",
-        placeholder:
-          "Co tě na MyMachine láká, co umíš nebo co by ses chtěl či chtěla naučit?",
-        required: true,
-        minLength: 20,
+        placeholder: "Napiš nám cokoliv důležitého nebo svůj dotaz (nepovinné)…",
         maxLength: 2000,
         fullWidth: true,
       },
     ],
-    checkGroup: {
-      name: "teamAreas",
-      legend: "V čem se chceš zapojit?",
-      hint: "Vyber alespoň jednu možnost.",
-      options: [
-        "Technický návrh a konstrukce",
-        "Výroba a prototypování",
-        "Design a práce s uživatelem",
-        "Elektronika nebo programování",
-        "Organizace a komunikace",
-        "Zatím nevím — rád/a se poradím",
-      ],
-    },
   },
   firma: {
     eyebrow: "Nezávazný zájem firmy",
@@ -393,6 +338,7 @@ export default function JoinForm({ role }: { role: JoinRole }) {
   const formId = `formular-${role}`;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<FormStatus>({ type: "idle", message: "" });
+  const [emailHref, setEmailHref] = useState("");
 
   function clearFieldError(name: string) {
     if (errors[name]) {
@@ -454,10 +400,29 @@ export default function JoinForm({ role }: { role: JoinRole }) {
       return;
     }
 
+    const bodyLines = config.fields
+      .map((field) => {
+        const value = String(formData.get(field.name) ?? "").trim();
+        return value ? `${field.label}: ${value}` : "";
+      })
+      .filter(Boolean);
+
+    if (config.checkGroup) {
+      const selected = formData.getAll(config.checkGroup.name).map(String);
+      if (selected.length) {
+        bodyLines.push(`${config.checkGroup.legend}: ${selected.join(", ")}`);
+      }
+    }
+
+    setEmailHref(
+      `mailto:dominika.franekova@futureshapers.cz?subject=${encodeURIComponent(
+        config.emailSubject
+      )}&body=${encodeURIComponent(bodyLines.join("\n"))}`
+    );
     setStatus({
       type: "ready",
-      message:
-        "Formulář je vyplněný správně. Odesílání zatím není aktivní, proto se žádná data neodeslala.",
+        message:
+          "Formulář je vyplněný správně. Kliknutím níže otevřete připravený e-mail pro tým MyMachine.",
     });
   }
 
@@ -478,8 +443,12 @@ export default function JoinForm({ role }: { role: JoinRole }) {
       </div>
 
       <div className={styles.draftNotice} role="note">
-        <strong>Pracovní verze formuláře</strong>
-        <span>Data se zatím nikam neodesílají. Skutečné odeslání připojíme později.</span>
+        <strong>{role === "skola" ? "Přihlášky škol uzavřeny" : "Odeslání e-mailem"}</strong>
+        <span>
+          {role === "skola"
+            ? "Pro ročník 2026/2027 už školy nepřijímáme; kontakt můžete poslat pro další ročník."
+            : "Po kontrole údajů vám připravíme e-mail pro manažerku programu Dominiku Franekovou."}
+        </span>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -634,9 +603,9 @@ export default function JoinForm({ role }: { role: JoinRole }) {
             <p>{status.message}</p>
             {status.type === "ready" && (
               <a
-                href={`mailto:franekova@btym.cz?subject=${encodeURIComponent(config.emailSubject)}`}
+                href={emailHref}
               >
-                Prozatím poslat zájem e-mailem
+                Otevřít e-mail pro Dominiku
               </a>
             )}
           </div>
