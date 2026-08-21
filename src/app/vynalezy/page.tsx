@@ -67,7 +67,7 @@ export default function VynalezyPage() {
         </div>
       </section>
 
-      {/* VYNÁLEZY — EDITORIAL STACK */}
+      {/* VYNÁLEZY — DVOUSLOUPCOVÁ MŘÍŽKA */}
       <section className={styles.stack}>
         <div className={styles.stackInner}>
           {allInventions.map((invention) => (

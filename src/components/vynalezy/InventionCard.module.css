@@ -1,6 +1,6 @@
 .row {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  grid-template-rows: auto 1fr;
   align-items: stretch;
   overflow: hidden;
   border: 1px solid var(--hairline);
@@ -16,17 +16,14 @@
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  min-height: 360px;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
   gap: 2px;
   background: #000;
 }
 
 .gallerySingle {
   grid-template-columns: 1fr;
-}
-
-.gallerySingle .thumbnail img {
-  object-fit: contain !important;
 }
 
 .thumbnail {
@@ -71,16 +68,16 @@
 .body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
-  padding: clamp(28px, 3vw, 48px);
+  padding: clamp(24px, 2.5vw, 36px);
 }
 
 .title {
   margin: 0;
   color: var(--card-fg);
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.2vw, 44px);
+  font-size: clamp(28px, 2.6vw, 38px);
   font-weight: 700;
   line-height: 0.97;
   letter-spacing: -0.01em;
@@ -199,21 +196,7 @@
   color: var(--accent);
 }
 
-@media (max-width: 820px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery {
-    min-height: 280px;
-  }
-}
-
 @media (max-width: 520px) {
-  .gallery {
-    min-height: 220px;
-  }
-
   .expandLabel {
     right: 8px;
     bottom: 8px;
